@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oportunidades de Inversión — Gamatel Peru S.A.C.</title>
+  <!-- Noindex: keep this page out of search engines -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --black:     #080604;
+      --deep:      #0f0a06;
+      --espresso:  #1a0f09;
+      --roast:     #2a1610;
+      --bark:      #42200f;
+      --copper:    #8b3e1a;
+      --amber:     #b07828;
+      --gold:      #c9973a;
+      --gilt:      #e0b84a;
+      --cream:     #f2e8d6;
+      --ivory:     #f8f3ea;
+      --sage:      #4e6045;
+      --font-serif:'Cormorant Garamond',Georgia,serif;
+      --font-sans: 'Jost',sans-serif;
+      --t:         0.5s cubic-bezier(.25,.46,.45,.94);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--deep);color:var(--cream);font-family:var(--font-sans);overflow-x:hidden;cursor:none}
+
+    /* GRAIN */
+    body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");
+      opacity:.55}
+
+    /* CURSOR */
+    #cur,#cur-r{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+    #cur{width:7px;height:7px;background:var(--gold);transition:width .2s,height .2s,background .2s}
+    #cur-r{width:28px;height:28px;border:1px solid rgba(201,151,58,.4);transition:width .3s,height .3s}
+    body.ch #cur{width:16px;height:16px;background:var(--cream)}
+    body.ch #cur-r{width:48px;height:48px}
+
+    /* NAV */
+    nav{position:fixed;top:0;inset-inline:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 5rem;transition:background var(--t),padding var(--t),border-color var(--t);border-bottom:1px solid transparent}
+    nav.stuck{background:rgba(8,6,4,.95);backdrop-filter:blur(16px);padding:1rem 5rem;border-bottom-color:rgba(201,151,58,.1)}
+    .nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+    .logo-ring{width:40px;height:40px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+    .logo-ring::before{content:'';position:absolute;inset:4px;border-radius:50%;border:.5px solid rgba(201,151,58,.25)}
+    .logo-ring svg{width:18px;height:18px}
+    .logo-words{display:flex;flex-direction:column;gap:1px}
+    .logo-n{font-family:var(--font-serif);font-size:1.1rem;font-weight:600;letter-spacing:.06em;color:var(--cream);line-height:1}
+    .logo-s{font-size:.48rem;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+    .nav-right{display:flex;align-items:center;gap:2rem}
+    .nav-back{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,232,214,.5);text-decoration:none;transition:color var(--t);display:flex;align-items:center;gap:.5rem}
+    .nav-back:hover{color:var(--gold)}
+    .nav-conf{display:flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,151,58,.55)}
+    .nav-conf-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);animation:blink 2.5s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* GATE / ACCESS */
+    .access-gate{position:fixed;inset:0;z-index:500;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity .8s ease,visibility .8s ease}
+    .access-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .gate-logo{font-family:var(--font-serif);font-size:3rem;font-weight:300;color:var(--cream);letter-spacing:.08em;text-align:center}
+    .gate-logo span{color:var(--gold);font-style:italic}
+    .gate-line{width:60px;height:1px;background:rgba(201,151,58,.4);margin:0 auto}
+    .gate-label{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(242,232,214,.4);text-align:center}
+    .gate-form{display:flex;flex-direction:column;gap:.8rem;width:320px}
+    .gate-input{background:rgba(242,232,214,.05);border:1px solid rgba(201,151,58,.2);padding:.9rem 1.2rem;font-family:var(--font-sans);font-size:.9rem;font-weight:300;color:var(--cream);outline:none;border-radius:2px;transition:border-color var(--t)}
+    .gate-input:focus{border-color:var(--gold)}
+    .gate-input::placeholder{color:rgba(242,232,214,.3)}
+    .gate-btn{padding:.9rem;background:var(--gold);color:var(--espresso);font-family:var(--font-sans);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background var(--t)}
+    .gate-btn:hover{background:var(--cream)}
+    .gate-note{font-size:.65rem;color:rgba(242,232,214,.3);text-align:center;line-height:1.7;max-width:280px;margin:0 auto}
+    .gate-err{font-size:.72rem;color:#c0392b;text-align:center;display:none}
+
+    /* HERO */
+    #hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0f0a06 0%,#1a0f09 45%,#0d0804 100%)}
+    .hero-geo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .hero-geo svg{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:55%;opacity:.03}
+    .hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;filter:blur(160px);background:rgba(139,62,26,.12);top:-200px;right:-200px;animation:hglow 16s ease-in-out infinite alternate;pointer-events:none}
+    @keyframes hglow{from{transform:scale(1)}to{transform:scale(1.2) translate(-40px,60px)}}
+    .hero-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:8rem 5rem 5rem;width:100%}
+    .hero-conf{display:inline-flex;align-items:center;gap:.8rem;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s ease .2s forwards}
+    .conf-badge{background:rgba(78,96,69,.2);border:1px solid rgba(78,96,69,.4);padding:.35rem 1rem;border-radius:20px;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(78,96,69,.9);display:flex;align-items:center;gap:.5rem}
+    .conf-dot{width:5px;height:5px;border-radius:50%;background:var(--sage)}
+    .hero-eyebrow{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,151,58,.6);margin-bottom:1rem;opacity:0;animation:fadeUp .8s ease .4s forwards}
+    .hero-h1{font-family:var(--font-serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:var(--cream);opacity:0;animation:fadeUp .9s ease .5s forwards}
+    .hero-h1 em{font-style:italic;color:var(--gold)}
+    .hero-h1 strong{font-weight:700;display:block}
+    .hero-divider{width:60px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin:2rem 0;opacity:0;animation:fadeUp .8s ease .7s forwards}
+    .hero-body{font-size:1rem;font-weight:300;color:rgba(242,232,214,.65);max-width:560px;line-height:1.9;opacity:0;animation:fadeUp .8s ease .8s forwards}
+    .hero-meta{display:flex;gap:3rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(201,151,58,.1);opacity:0;animation:fadeUp .8s ease 1s forwards}
+    .meta-item{}
+    .meta-n{font-family:var(--font-serif);font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1}
+    .meta-l{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,232,214,.4);margin-top:.3rem}
+    .hero-scroll{position:absolute;bottom:2.5rem;left:5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp 1s ease 1.4s forwards}
+    .scroll-l{width:50px;height:1px;background:linear-gradient(to right,var(--gold),transparent)}
+    .scroll-t{font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,232,214,.3)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+    /* COMMON */
+    .s{max-width:1100px;margin:0 auto;padding:7rem 5rem}
+    .s-label{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
+    .s-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+    .s-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.15;color:var(--cream)}
+    .s-title strong{font-weight:700}
+    .rev{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
+    .rev.in{opacity:1;transform:none}
+
+    /* OPPORTUNITY */
+    #opportunity{background:var(--espresso);position:relative;overflow:hidden}
+    #opportunity::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(60deg,rgba(201,151,58,.02) 0,rgba(201,151,58,.02) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(-60deg,rgba(201,151,58,.02) 0,rgba(201,151,58,.02) 1px,transparent 1px,transparent 60px)}
+    .opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem}
+    .opp-left{}
+    .opp-p{font-size:.95rem;font-weight:300;color:rgba(242,232,214,.68);line-height:1.95;margin-bottom:1.5rem}
+    .opp-pull{border-left:2px solid var(--gold);padding:1.2rem 1.8rem;background:rgba(201,151,58,.05);margin:2rem 0}
+    .opp-pull p{font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:var(--cream);line-height:1.6}
+    .opp-right{display:flex;flex-direction:column;gap:1px}
+    .kpi-item{background:rgba(201,151,58,.04);border:1px solid rgba(201,151,58,.1);padding:2rem 2.2rem;transition:background var(--t),border-color var(--t)}
+    .kpi-item:hover{background:rgba(201,151,58,.08);border-color:rgba(201,151,58,.25)}
+    .kpi-n{font-family:var(--font-serif);font-size:2.5rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.4rem}
+    .kpi-l{font-size:.7rem;font-weight:500;color:var(--cream);margin-bottom:.3rem}
+    .kpi-d{font-size:.78rem;font-weight:300;color:rgba(242,232,214,.5);line-height:1.6}
+
+    /* WHY INVEST */
+    #why{background:var(--deep)}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(201,151,58,.08);border:1px solid rgba(201,151,58,.08);margin-top:4rem}
+    .why-card{background:var(--deep);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background var(--t)}
+    .why-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,22,16,.8),transparent);opacity:0;transition:opacity var(--t)}
+    .why-card:hover::before{opacity:1}
+    .why-card:hover{background:var(--espresso)}
+    .why-num{font-family:var(--font-serif);font-size:4rem;font-weight:700;color:rgba(201,151,58,.07);position:absolute;top:.5rem;right:1.2rem;line-height:1;transition:color var(--t)}
+    .why-card:hover .why-num{color:rgba(201,151,58,.14)}
+    .why-ico{width:46px;height:46px;border-radius:50%;background:rgba(201,151,58,.08);border:1px solid rgba(201,151,58,.18);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.5rem;transition:transform .3s,background var(--t)}
+    .why-card:hover .why-ico{transform:scale(1.1) rotate(5deg);background:rgba(201,151,58,.18)}
+    .why-card h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:600;color:var(--cream);margin-bottom:.6rem}
+    .why-card p{font-size:.84rem;font-weight:300;color:rgba(242,232,214,.55);line-height:1.75}
+
+    /* MARKET */
+    #market{background:var(--roast);position:relative;overflow:hidden}
+    .market-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .market-visual{position:relative}
+    .market-chart{background:rgba(201,151,58,.04);border:1px solid rgba(201,151,58,.12);padding:2.5rem;border-radius:2px}
+    .chart-title{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+    .chart-bars{display:flex;flex-direction:column;gap:1rem}
+    .chart-bar-row{display:flex;align-items:center;gap:1rem}
+    .bar-label{font-size:.72rem;color:rgba(242,232,214,.6);min-width:120px;text-align:right}
+    .bar-track{flex:1;height:8px;background:rgba(201,151,58,.1);border-radius:20px;overflow:hidden}
+    .bar-fill{height:100%;border-radius:20px;background:linear-gradient(to right,var(--amber),var(--gilt));transform-origin:left;animation:barGrow 1.5s ease forwards}
+    .bar-fill{transform:scaleX(0)}
+    .bar-val{font-size:.72rem;color:var(--gold);font-weight:600;min-width:40px}
+    @keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    .market-text{}
+    .market-p{font-size:.95rem;font-weight:300;color:rgba(242,232,214,.68);line-height:1.95;margin-bottom:1.5rem}
+    .market-facts{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
+    .market-fact{display:flex;align-items:flex-start;gap:.8rem;font-size:.85rem;color:rgba(242,232,214,.7);line-height:1.6}
+    .fact-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.5rem}
+
+    /* MODEL */
+    #model{background:var(--deep)}
+    .model-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5px;background:rgba(201,151,58,.08);margin-top:4rem}
+    .model-card{background:var(--deep);padding:2.8rem;border:1px solid rgba(201,151,58,.08);position:relative;overflow:hidden;transition:background var(--t),border-color var(--t)}
+    .model-card:hover{background:rgba(42,22,16,.8);border-color:rgba(201,151,58,.2)}
+    .model-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber),var(--copper));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+    .model-card:hover::after{transform:scaleX(1)}
+    .model-tag{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+    .model-tag::before{content:'';width:16px;height:1px;background:var(--gold)}
+    .model-card h3{font-family:var(--font-serif);font-size:1.5rem;font-weight:600;color:var(--cream);margin-bottom:.8rem}
+    .model-card p{font-size:.84rem;font-weight:300;color:rgba(242,232,214,.55);line-height:1.75}
+    .model-deco{position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;border:1px solid rgba(201,151,58,.06)}
+
+    /* TIMELINE */
+    #timeline{background:var(--espresso)}
+    .tl-list{display:flex;flex-direction:column;gap:0;margin-top:4rem;position:relative}
+    .tl-list::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),transparent)}
+    .tl-item{display:grid;grid-template-columns:60px 1fr;gap:2rem;padding:2.5rem 0;position:relative}
+    .tl-item:not(:last-child){border-bottom:1px solid rgba(201,151,58,.06)}
+    .tl-node{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(201,151,58,.3);background:var(--espresso);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-serif);font-size:.85rem;font-weight:700;color:var(--gold);position:relative;z-index:1;transition:background var(--t),border-color var(--t)}
+    .tl-item:hover .tl-node{background:rgba(201,151,58,.1);border-color:var(--gold)}
+    .tl-content{}
+    .tl-phase{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+    .tl-content h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:600;color:var(--cream);margin-bottom:.6rem}
+    .tl-content p{font-size:.85rem;font-weight:300;color:rgba(242,232,214,.55);line-height:1.75}
+    .tl-period{display:inline-block;margin-top:.8rem;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,151,58,.6);border:1px solid rgba(201,151,58,.2);padding:.25rem .75rem;border-radius:20px}
+
+    /* TERMS */
+    #terms{background:var(--deep)}
+    .terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:4rem}
+    .term-card{border:1px solid rgba(201,151,58,.12);padding:2.5rem;position:relative;transition:border-color var(--t)}
+    .term-card:hover{border-color:rgba(201,151,58,.3)}
+    .term-tier{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+    .term-card h3{font-family:var(--font-serif);font-size:1.8rem;font-weight:600;color:var(--cream);margin-bottom:.3rem}
+    .term-min{font-size:.78rem;color:rgba(242,232,214,.45);margin-bottom:1.5rem}
+    .term-features{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem}
+    .term-feat{display:flex;align-items:flex-start;gap:.8rem;font-size:.84rem;color:rgba(242,232,214,.72);line-height:1.5}
+    .feat-check{color:var(--gold);flex-shrink:0;font-size:.9rem;margin-top:.1rem}
+    .term-card.featured{background:rgba(201,151,58,.04);border-color:rgba(201,151,58,.3)}
+    .term-card.featured::before{content:'Recomendado';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--espresso);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;white-space:nowrap}
+
+    /* NDA / DOSSIER FORM */
+    #dossier{background:var(--roast);position:relative;overflow:hidden}
+    #dossier::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,151,58,.02) 0,rgba(201,151,58,.02) 1px,transparent 1px,transparent 40px)}
+    .dossier-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .dossier-info h2{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.2;margin:1rem 0}
+    .dossier-info p{font-size:.9rem;font-weight:300;color:rgba(242,232,214,.62);line-height:1.85;margin-bottom:1.5rem}
+    .dossier-items{display:flex;flex-direction:column;gap:.7rem}
+    .dossier-item{display:flex;align-items:center;gap:.9rem;font-size:.85rem;color:rgba(242,232,214,.7)}
+    .d-ico{font-size:1.1rem;flex-shrink:0}
+    .dossier-form{display:flex;flex-direction:column;gap:1rem}
+    .f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .f-group{display:flex;flex-direction:column;gap:.4rem}
+    .f-group label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+    .f-group input,.f-group select,.f-group textarea{background:rgba(242,232,214,.04);border:1px solid rgba(201,151,58,.18);padding:.85rem 1rem;font-family:var(--font-sans);font-size:.88rem;font-weight:300;color:var(--cream);outline:none;border-radius:2px;transition:border-color var(--t),background var(--t)}
+    .f-group input:focus,.f-group select:focus,.f-group textarea:focus{border-color:var(--gold);background:rgba(242,232,214,.06)}
+    .f-group select option{background:var(--espresso)}
+    .f-group textarea{min-height:100px;resize:vertical}
+    .f-check{display:flex;align-items:flex-start;gap:.8rem;font-size:.78rem;color:rgba(242,232,214,.5);line-height:1.6;cursor:pointer}
+    .f-check input{accent-color:var(--gold);flex-shrink:0;margin-top:.2rem;cursor:pointer}
+    .submit-btn{padding:1rem;background:var(--gold);color:var(--espresso);font-family:var(--font-sans);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background var(--t),transform .2s,box-shadow .3s}
+    .submit-btn:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,151,58,.25)}
+    .form-note{font-size:.68rem;color:rgba(242,232,214,.35);text-align:center;line-height:1.6}
+
+    /* FOOTER */
+    footer{background:var(--black);border-top:1px solid rgba(201,151,58,.08);padding:3rem 5rem}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+    .footer-brand{font-family:var(--font-serif);font-size:1.1rem;font-weight:600;color:var(--cream)}
+    .footer-brand span{color:var(--gold);font-style:italic}
+    .footer-links{display:flex;gap:2rem;list-style:none}
+    .footer-links a{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,232,214,.4);text-decoration:none;transition:color var(--t)}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-copy{font-size:.68rem;color:rgba(242,232,214,.25)}
+    .conf-seal{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,151,58,.35);border:1px solid rgba(201,151,58,.15);padding:.3rem .8rem;border-radius:20px}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:2rem;right:2rem;background:var(--espresso);color:var(--cream);padding:1rem 1.5rem;border-radius:2px;box-shadow:0 12px 48px rgba(0,0,0,.4);display:flex;align-items:center;gap:.8rem;font-size:.85rem;z-index:999;transform:translateY(100px);opacity:0;transition:transform .4s,opacity .4s;border-left:3px solid var(--gold)}
+    .toast.show{transform:translateY(0);opacity:1}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      nav,nav.stuck{padding:1.2rem 2rem}
+      .s{padding:4rem 2rem}
+      .opp-grid,.market-layout,.dossier-layout,.terms-grid{grid-template-columns:1fr}
+      .why-grid,.model-grid{grid-template-columns:1fr}
+      .hero-inner{padding:6rem 2rem 4rem}
+      .hero-meta{flex-wrap:wrap;gap:2rem}
+      footer{padding:2rem}
+      .footer-inner{flex-direction:column;text-align:center}
+      .tl-list::before{left:20px}
+      .f-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur"></div><div id="cur-r"></div>
+
+<!-- ACCESS GATE -->
+<div class="access-gate" id="gate">
+  <div class="gate-logo">Gamatel <span>Peru</span></div>
+  <div class="gate-line"></div>
+  <div class="gate-label">Área Restringida · Inversores Calificados</div>
+  <div class="gate-form">
+    <input class="gate-input" type="text" id="gateCode" placeholder="Código de acceso" onkeydown="if(event.key==='Enter')checkGate()"/>
+    <button class="gate-btn" onclick="checkGate()">Ingresar</button>
+    <div class="gate-err" id="gateErr">Código incorrecto. Contáctenos para solicitar acceso.</div>
+  </div>
+  <p class="gate-note">Esta sección está disponible exclusivamente para inversores calificados e instituciones interesadas previamente contactadas. Para solicitar acceso escriba a <strong style="color:rgba(201,151,58,.7)">inversores@gamatelperu.com</strong></p>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-ring">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round">
+        <path d="M5 9h14l-1.5 9H6.5L5 9z"/><path d="M17 11c2-1 4 0 4 2.5S19 16 17 15"/>
+        <path d="M8 6c0-2.5 4-2.5 4-5"/><path d="M12 6c0-2.5 4-2.5 4-5"/>
+      </svg>
+    </div>
+    <div class="logo-words">
+      <span class="logo-n">Gamatel Peru</span>
+      <span class="logo-s">® Marca Registrada · S.A.C.</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Sitio Corporativo</a>
+    <div class="nav-conf"><div class="nav-conf-dot"></div>Acceso Restringido</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-geo">
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="white" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="200" stroke="white" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="120" stroke="white" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="40" stroke="white" stroke-width=".5"/>
+      <line x1="0" y1="300" x2="600" y2="300" stroke="white" stroke-width=".5"/>
+      <line x1="300" y1="0" x2="300" y2="600" stroke="white" stroke-width=".5"/>
+    </svg>
+  </div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-conf">
+      <div class="conf-badge"><div class="conf-dot"></div>Documento Confidencial · Solo Inversores</div>
+    </div>
+    <div class="hero-eyebrow">Gamatel Peru S.A.C. · Lima, Perú · 2025</div>
+    <h1 class="hero-h1">
+      Oportunidad de<br/><em>inversión</em>
+      <strong>estratégica</strong>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-body">El mercado del café specialty y cacao premium peruano crece sostenidamente. Gamatel Peru ofrece a inversores calificados participación en un modelo de negocio omnicanal único — combinando comercialización B2B institucional con una plataforma de e-commerce propia.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-n">S/.2M</div><div class="meta-l">Objetivo de captación</div></div>
+      <div class="meta-item"><div class="meta-n">18–24%</div><div class="meta-l">ROI proyectado anual</div></div>
+      <div class="meta-item"><div class="meta-n">36 m</div><div class="meta-l">Horizonte de inversión</div></div>
+      <div class="meta-item"><div class="meta-n">3</div><div class="meta-l">Líneas de negocio activas</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-l"></div><span class="scroll-t">Explorar dossier</span></div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section id="opportunity">
+  <div class="s">
+    <div class="rev">
+      <div class="s-label">La Oportunidad</div>
+      <h2 class="s-title">¿Por qué <strong>Gamatel Peru</strong><br/>y por qué ahora?</h2>
+    </div>
+    <div class="opp-grid">
+      <div class="opp-left rev">
+        <p class="opp-p">Perú es el tercer mayor productor de café orgánico del mundo y uno de los principales exportadores de cacao fino de aroma. Sin embargo, la cadena de valor interna sigue siendo fragmentada — con productores desconectados de mercados premium y consumidores finales.</p>
+        <p class="opp-p">Gamatel Peru cierra esa brecha. Operamos como comercializadora con presencia en ferias internacionales, contratos institucionales B2B y nuestra plataforma de e-commerce <strong style="color:var(--gold)">Gamatetu Café</strong> — creando un ecosistema completo de distribución y valorización del producto peruano.</p>
+        <div class="opp-pull">
+          <p>"El café specialty peruano crece a tasas del 12–15% anual. Quienes ingresen ahora capturan la ola de valorización antes de la masificación."</p>
+        </div>
+        <p class="opp-p">Buscamos socios inversores con visión de largo plazo — fondos, family offices, empresas del sector agroalimentario o inversores individuales calificados — para financiar la expansión de operaciones, tecnología y mercados internacionales.</p>
+      </div>
+      <div class="opp-right rev">
+        <div class="kpi-item"><div class="kpi-n">12–15%</div><div class="kpi-l">Crecimiento anual café specialty Perú</div><div class="kpi-d">Fuente: Junta Nacional del Café / ICO 2024</div></div>
+        <div class="kpi-item"><div class="kpi-n">3er</div><div class="kpi-l">Lugar mundial en café orgánico</div><div class="kpi-d">Perú es referente mundial en café orgánico certificado</div></div>
+        <div class="kpi-item"><div class="kpi-n">$850M</div><div class="kpi-l">Exportaciones de café peruano 2024</div><div class="kpi-d">Cifra récord con tendencia al alza en mercados premium</div></div>
+        <div class="kpi-item"><div class="kpi-n">2x</div><div class="kpi-l">Modelo omnicanal B2B + D2C</div><div class="kpi-d">Doble fuente de ingresos: institucional + marketplace propio</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY INVEST -->
+<section id="why">
+  <div class="s">
+    <div class="rev">
+      <div class="s-label">Propuesta de Valor</div>
+      <h2 class="s-title">Seis razones para <strong>invertir</strong></h2>
+    </div>
+    <div class="why-grid rev">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-ico">🏔️</div>
+        <h3>Origen Premium Garantizado</h3>
+        <p>Acceso directo a productores certificados en las mejores zonas cafetaleras y cacaoteras del Perú. Producto con trazabilidad completa y diferenciación real en mercados internacionales.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-ico">🔄</div>
+        <h3>Modelo Omnicanal Probado</h3>
+        <p>Ingresos de dos fuentes independientes: contratos B2B institucionales (hoteles, universidades, ferias) + e-commerce directo al consumidor vía gamatetucafe.com.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-ico">📈</div>
+        <h3>Mercado en Expansión</h3>
+        <p>El segmento de café specialty y bebidas premium peruanas crece a doble dígito anual. El timing de entrada es estratégico antes de la masificación del segmento.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-ico">® </div>
+        <h3>Marca Registrada Protegida</h3>
+        <p>Gamatel Peru S.A.C. opera bajo Marca Registrada ®. La identidad de marca, productos y canales están legalmente protegidos, generando activos intangibles con valor creciente.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <div class="why-ico">🌍</div>
+        <h3>Potencial de Exportación</h3>
+        <p>Mercados objetivo en EE.UU., Japón, Alemania y Chile para café specialty. El pisco con crema de café tiene potencial único como producto de exportación diferenciado.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <div class="why-ico">🤝</div>
+        <h3>Equipo con Experiencia</h3>
+        <p>Equipo fundador con experiencia en comercio exterior, gastronomía y distribución. Relaciones consolidadas con ferias internacionales y distribuidores en múltiples regiones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="s">
+    <div class="market-layout">
+      <div class="market-visual rev">
+        <div class="market-chart">
+          <div class="chart-title">Composición de Ingresos Proyectados</div>
+          <div class="chart-bars">
+            <div class="chart-bar-row">
+              <div class="bar-label">B2B Institucional</div>
+              <div class="bar-track"><div class="bar-fill" style="width:65%;animation-delay:.2s"></div></div>
+              <div class="bar-val">65%</div>
+            </div>
+            <div class="chart-bar-row">
+              <div class="bar-label">E-commerce D2C</div>
+              <div class="bar-track"><div class="bar-fill" style="width:25%;animation-delay:.4s"></div></div>
+              <div class="bar-val">25%</div>
+            </div>
+            <div class="chart-bar-row">
+              <div class="bar-label">Exportación</div>
+              <div class="bar-track"><div class="bar-fill" style="width:10%;animation-delay:.6s"></div></div>
+              <div class="bar-val">10%</div>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(201,151,58,.1)">
+            <div class="chart-title" style="margin-bottom:1rem">Crecimiento Proyectado (Año 1–3)</div>
+            <div class="chart-bars">
+              <div class="chart-bar-row"><div class="bar-label">Año 1</div><div class="bar-track"><div class="bar-fill" style="width:35%;animation-delay:.8s;background:linear-gradient(to right,#5c6e50,#8aaa78)"></div></div><div class="bar-val" style="color:var(--sage)">Base</div></div>
+              <div class="chart-bar-row"><div class="bar-label">Año 2</div><div class="bar-track"><div class="bar-fill" style="width:58%;animation-delay:1s"></div></div><div class="bar-val">+65%</div></div>
+              <div class="chart-bar-row"><div class="bar-label">Año 3</div><div class="bar-track"><div class="bar-fill" style="width:90%;animation-delay:1.2s;background:linear-gradient(to right,#c9973a,#e0b84a)"></div></div><div class="bar-val">+155%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="market-text rev">
+        <div class="s-label">Análisis de Mercado</div>
+        <h2 class="s-title">Un mercado <strong>listo</strong><br/>para escalar</h2>
+        <p class="market-p" style="margin-top:1.5rem">El consumo per cápita de café en Perú ha crecido 45% en los últimos 5 años. Lima concentra el 70% del consumo interno premium, con una clase media-alta en expansión que demanda productos de origen y trazabilidad.</p>
+        <p class="market-p">Paralelamente, la demanda internacional de café specialty peruano crece sostenidamente, con mercados como Japón, EE.UU. y Alemania pagando premiums de 3–5x sobre precios commodity.</p>
+        <div class="market-facts">
+          <div class="market-fact"><div class="fact-dot"></div>Perú: 3er productor mundial de café orgánico certificado</div>
+          <div class="market-fact"><div class="fact-dot"></div>Cacao fino de aroma peruano: Premium de 30–50% vs. cacao convencional</div>
+          <div class="market-fact"><div class="fact-dot"></div>E-commerce alimentario en Perú: +120% de crecimiento post-pandemia</div>
+          <div class="market-fact"><div class="fact-dot"></div">Pisco peruano: Denominación de origen con mercado en expansión global</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="model">
+  <div class="s">
+    <div class="rev">
+      <div class="s-label">Modelo de Negocio</div>
+      <h2 class="s-title">Cómo <strong>generamos</strong> valor</h2>
+    </div>
+    <div class="model-grid rev">
+      <div class="model-card">
+        <div class="model-deco"></div>
+        <div class="model-tag">Canal 01</div>
+        <h3>B2B Institucional</h3>
+        <p>Contratos de abastecimiento con hoteles, restaurantes, universidades, aeropuertos y entidades gubernamentales. Márgenes estables y contratos recurrentes de 12–36 meses. Presencia activa en ferias y exposiciones internacionales.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-deco"></div>
+        <div class="model-tag">Canal 02</div>
+        <h3>E-commerce D2C</h3>
+        <p>Plataforma propia gamatetucafe.com con catálogo completo de café, cacao, pisco con crema de café y derivados. Venta directa al consumidor final con márgenes superiores al canal tradicional.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-deco"></div>
+        <div class="model-tag">Canal 03</div>
+        <h3>Gifting Corporativo</h3>
+        <p>Kits de degustación y canastas gourmet personalizadas para empresas. Temporadas navideñas, lanzamientos de producto y activaciones de marca. Alto margen y ticket promedio elevado.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-deco"></div>
+        <div class="model-tag">Canal 04</div>
+        <h3>Exportación Internacional</h3>
+        <p>Canal en desarrollo hacia mercados de EE.UU., Japón, Alemania y Chile. El pisco con crema de café representa un producto único sin competencia directa en mercados internacionales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="s">
+    <div class="rev">
+      <div class="s-label">Plan de Expansión</div>
+      <h2 class="s-title">Hoja de ruta <strong>2025–2028</strong></h2>
+    </div>
+    <div class="tl-list rev">
+      <div class="tl-item">
+        <div class="tl-node">1</div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase Actual</div>
+          <h3>Consolidación y Plataforma Digital</h3>
+          <p>Lanzamiento oficial de gamatetucafe.com, consolidación de contratos B2B en Lima, certificaciones de calidad y registro de marca en mercados internacionales clave.</p>
+          <span class="tl-period">2025 — En curso</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-node">2</div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase de Crecimiento</div>
+          <h3>Expansión Nacional y Primeras Exportaciones</h3>
+          <p>Apertura de canales en Arequipa, Cusco y Trujillo. Primeros contratos de exportación a Chile y EE.UU. Expansión del catálogo con nuevas líneas de producto.</p>
+          <span class="tl-period">2026</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-node">3</div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase de Escala</div>
+          <h3>Mercados Internacionales y Distribución</h3>
+          <p>Red de distribuidores en 5+ países. Participación en ferias internacionales (SIAL París, World of Coffee). Lanzamiento de línea cosmética a base de café para retail internacional.</p>
+          <span class="tl-period">2027</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-node">4</div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase de Madurez</div>
+          <h3>Consolidación Internacional y Retorno</h3>
+          <p>Marca Gamatel posicionada en mercados premium internacionales. Reinversión de utilidades y primera distribución a inversores según estructura acordada. Evaluación de ronda de crecimiento adicional.</p>
+          <span class="tl-period">2028</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT TERMS -->
+<section id="terms">
+  <div class="s">
+    <div class="rev">
+      <div class="s-label">Estructuras de Participación</div>
+      <h2 class="s-title">Modalidades de <strong>inversión</strong></h2>
+      <p style="font-size:.9rem;font-weight:300;color:rgba(242,232,214,.55);line-height:1.8;max-width:600px;margin-top:1rem">Las siguientes estructuras son referenciales. Los términos específicos se definen en negociación directa con cada inversor, previa firma de NDA.</p>
+    </div>
+    <div class="terms-grid rev">
+      <div class="term-card">
+        <div class="term-tier">Nivel Entrada</div>
+        <h3>Inversor Ángel</h3>
+        <div class="term-min">Desde S/.30,000</div>
+        <div class="term-features">
+          <div class="term-feat"><span class="feat-check">✦</span>Participación como prestamista con retorno fijo</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Tasa preferencial 12–15% anual</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Plazo mínimo 18 meses</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Reportes trimestrales de desempeño</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Acceso a catálogo exclusivo de productos</div>
+        </div>
+        <a href="#dossier" class="submit-btn" style="display:block;text-align:center;text-decoration:none;font-size:.7rem;letter-spacing:.2em">Solicitar Información</a>
+      </div>
+      <div class="term-card featured">
+        <div class="term-tier">Nivel Estratégico</div>
+        <h3>Socio Inversor</h3>
+        <div class="term-min">Desde S/.120,000</div>
+        <div class="term-features">
+          <div class="term-feat"><span class="feat-check">✦</span>Participación accionaria en Gamatel Peru S.A.C.</div>
+          <div class="term-feat"><span class="feat-check">✦</span>ROI proyectado 18–24% anual</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Participación en decisiones estratégicas</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Reportes mensuales + acceso a EE.FF.</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Opciones de exit a partir del año 3</div>
+          <div class="term-feat"><span class="feat-check">✦</span>Exclusividad territorial negociable</div>
+        </div>
+        <a href="#dossier" class="submit-btn" style="display:block;text-align:center;text-decoration:none;font-size:.7rem;letter-spacing:.2em">Solicitar Dossier Completo</a>
+      </div>
+    </div>
+    <div style="margin-top:2rem;padding:1.5rem 2rem;border:1px solid rgba(201,151,58,.12);background:rgba(201,151,58,.03);font-size:.78rem;color:rgba(242,232,214,.45);line-height:1.8;text-align:center">
+      ⚠️ Las proyecciones financieras presentadas son estimaciones basadas en condiciones actuales de mercado y no constituyen garantía de retorno. Toda inversión implica riesgo. Este documento es confidencial y está destinado exclusivamente al receptor. La distribución no autorizada está prohibida.
+    </div>
+  </div>
+</section>
+
+<!-- DOSSIER REQUEST -->
+<section id="dossier">
+  <div class="s">
+    <div class="dossier-layout">
+      <div class="dossier-info rev">
+        <div class="s-label">Próximos Pasos</div>
+        <h2>Solicitar el <strong>Dossier</strong><br/>Completo</h2>
+        <p>Envíenos sus datos y nos pondremos en contacto dentro de 48 horas hábiles con el paquete de información detallado, incluyendo estados financieros, proyecciones y términos específicos.</p>
+        <div class="dossier-items">
+          <div class="dossier-item"><span class="d-ico">📄</span>Dossier ejecutivo completo (PDF)</div>
+          <div class="dossier-item"><span class="d-ico">📊</span>Proyecciones financieras 2025–2028</div>
+          <div class="dossier-item"><span class="d-ico">🤝</span>Acuerdo de Confidencialidad (NDA)</div>
+          <div class="dossier-item"><span class="d-ico">📅</span>Agenda de reunión con equipo fundador</div>
+          <div class="dossier-item"><span class="d-ico">✅</span>Estructura legal de la inversión</div>
+        </div>
+      </div>
+      <div class="dossier-form rev">
+        <div class="f-row">
+          <div class="f-group"><label>Nombre *</label><input type="text" id="invName" placeholder="Nombre completo"/></div>
+          <div class="f-group"><label>Apellido *</label><input type="text" id="invLast" placeholder="Apellido"/></div>
+        </div>
+        <div class="f-group"><label>Email Corporativo *</label><input type="email" id="invEmail" placeholder="nombre@empresa.com"/></div>
+        <div class="f-group"><label>Empresa / Fondo</label><input type="text" id="invCompany" placeholder="Nombre de su empresa o fondo"/></div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Perfil de Inversor</label>
+            <select id="invType">
+              <option value="">Seleccionar...</option>
+              <option>Inversor Individual</option>
+              <option>Family Office</option>
+              <option>Fondo de Inversión</option>
+              <option>Empresa Corporativa</option>
+              <option>Angel Investor</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Monto de Interés</label>
+            <select id="invAmount">
+              <option value="">Seleccionar rango...</option>
+              <option>S/.30,000 – S/.60,000</option>
+              <option>S/.60,000 – S/.120,000</option>
+              <option>S/.120,000 – S/.300,000</option>
+              <option>S/.300,000 – S/.600,000</option>
+              <option>Más de S/.600,000</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-group"><label>Mensaje / Preguntas</label><textarea id="invMsg" placeholder="Cuéntenos sobre su perfil de inversión, objetivos y cualquier pregunta inicial..."></textarea></div>
+        <label class="f-check"><input type="checkbox" id="invNda"/><span>Entiendo que este proceso incluye la firma de un Acuerdo de Confidencialidad (NDA) previo a la entrega del dossier completo.</span></label>
+        <label class="f-check"><input type="checkbox" id="invTerms"/><span>Confirmo que soy un inversor calificado y que la información compartida será tratada con la máxima confidencialidad.</span></label>
+        <button class="submit-btn" onclick="submitDossier()">Solicitar Dossier Completo →</button>
+        <p class="form-note">🔒 Sus datos están protegidos. No compartimos información con terceros. Respuesta garantizada en 48 horas hábiles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Gamatel <span>Peru</span> S.A.C.</div>
+      <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,151,58,.4);margin-top:.3rem">® Marca Registrada · Lima, Perú</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Sitio Corporativo</a></li>
+      <li><a href="https://www.gamatetucafe.com" target="_blank">Marketplace</a></li>
+      <li><a href="#dossier">Solicitar Dossier</a></li>
+    </ul>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem">
+      <span class="conf-seal">🔒 Documento Confidencial</span>
+      <div class="footer-copy">© 2025 Gamatel Peru S.A.C. · inversores@gamatelperu.com</div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span>✓</span><span id="toastMsg">Mensaje enviado</span></div>
+
+<script>
+  // ── CURSOR
+  const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,input,select,textarea,.kpi-item,.why-card,.model-card,.tl-item,.term-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+  });
+
+  // ── ACCESS GATE
+  const CODES=['GAMATEL2025','INVERSOR','DOSSIER2025','CAFEPERU'];
+  function checkGate(){
+    const v=document.getElementById('gateCode').value.trim().toUpperCase();
+    const err=document.getElementById('gateErr');
+    if(CODES.includes(v)){
+      document.getElementById('gate').classList.add('hidden');
+      sessionStorage.setItem('gatel_access','1');
+    } else {
+      err.style.display='block';
+      setTimeout(()=>err.style.display='none',3000);
+    }
+  }
+  // Auto-open if already authenticated
+  if(sessionStorage.getItem('gatel_access')==='1'){
+    document.getElementById('gate').classList.add('hidden');
+  }
+
+  // ── NAV SCROLL
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('stuck',scrollY>60));
+
+  // ── REVEAL
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+  // ── BAR CHART ANIMATE on scroll
+  const barObs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill').forEach(b=>{
+        b.style.animation='none';
+        void b.offsetWidth;
+        b.style.animation='';
+      });
+    }
+  }),{threshold:.3});
+  document.querySelectorAll('.market-chart').forEach(el=>barObs.observe(el));
+
+  // ── SUBMIT DOSSIER
+  function submitDossier(){
+    const name=document.getElementById('invName').value.trim();
+    const email=document.getElementById('invEmail').value.trim();
+    const nda=document.getElementById('invNda').checked;
+    const terms=document.getElementById('invTerms').checked;
+    if(!name||!email){showToast('⚠️ Por favor complete nombre y email');return}
+    if(!nda||!terms){showToast('⚠️ Por favor acepte las condiciones de confidencialidad');return}
+    showToast('✅ Solicitud enviada. Recibirá respuesta en 48h hábiles.');
+    setTimeout(()=>{
+      document.getElementById('invName').value='';
+      document.getElementById('invLast').value='';
+      document.getElementById('invEmail').value='';
+      document.getElementById('invCompany').value='';
+      document.getElementById('invMsg').value='';
+      document.getElementById('invNda').checked=false;
+      document.getElementById('invTerms').checked=false;
+    },1000);
+  }
+
+  function showToast(msg){
+    const t=document.getElementById('toast'),m=document.getElementById('toastMsg');
+    m.textContent=msg;t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),4000);
+  }
+</script>
+</body>
+</html>
