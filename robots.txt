@@ -1,0 +1,13 @@
+# Gamatel Peru S.A.C. - robots.txt
+# https://gamatelperu.com
+
+User-agent: *
+Allow: /
+Allow: /products.html
+Disallow: /investors.html
+
+# Sitemap location
+Sitemap: https://gamatelperu.com/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
