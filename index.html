@@ -286,6 +286,8 @@
     .p-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(77,43,24,.6),transparent);opacity:0;transition:opacity var(--t)}
     .card-overlay{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity var(--t);background:linear-gradient(to right,rgba(10,6,3,.97) 0%,rgba(10,6,3,.88) 25%,rgba(10,6,3,.55) 48%,rgba(10,6,3,.15) 70%,transparent 100%);pointer-events:none}
     .p-card:hover .card-overlay{opacity:1}
+    .card-title{color:#ffffff!important;transition:color .4s ease}
+    .p-card:hover .card-title{color:var(--gold)!important}
     .p-card.featured:hover::before{opacity:1}
     .p-card:hover::before{opacity:1}
     .p-card:hover{background:var(--roast)}
@@ -295,7 +297,27 @@
     .p-card:hover .p-ico{transform:scale(1.1) rotate(6deg);background:rgba(212,168,67,.2)}
     .p-name{font-family:var(--font-serif);font-size:1.4rem;font-weight:600;color:var(--cream);margin-bottom:.6rem}
     .p-desc{font-size:.85rem;font-weight:300;color:rgba(245,238,223,.58);line-height:1.75}
-    .p-tag{display:inline-block;margin-top:1rem;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(212,168,67,.28);padding:.28rem .75rem;border-radius:20px}
+    .p-tag{
+      display:inline-block;
+      margin-top:1rem;
+      font-size:.68rem;
+      font-weight:500;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      border:1.5px solid rgba(212,168,67,.5);
+      padding:.6rem 1.4rem;
+      border-radius:20px;
+      cursor:pointer;
+      transition:background var(--t),color var(--t),border-color var(--t),transform .2s;
+      text-decoration:none;
+    }
+    .p-tag:hover{
+      background:var(--gold);
+      color:var(--espresso);
+      border-color:var(--gold);
+      transform:translateY(-2px);
+    }
     .p-card.featured{
       grid-column:span 3;
       display:flex;
@@ -600,8 +622,7 @@
         padding:1.8rem 2rem;
         display:flex;flex-direction:column;gap:1rem;">
         <div class="p-ico" style="background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3)">🍸</div>
-        <div style="font-family:var(--font-serif);font-size:1.9rem;font-weight:700;
-                    color:var(--gold);line-height:1.15;">
+        <div class="card-title" style="font-family:var(--font-serif);font-size:1.9rem;font-weight:700;line-height:1.15;">
           Pisco con<br/>Crema de Café
         </div>
         <p style="font-size:.88rem;font-weight:300;color:rgba(245,238,223,.75);
@@ -612,7 +633,7 @@
           ideal para eventos de lujo,
           degustaciones y exportación.
         </p>
-        <span class="p-tag" style="align-self:flex-start">✦ Bebida Insignia</span>
+        <a href="products.html" class="p-tag" style="align-self:flex-start">Ver Bebida Insignia →</a>
       </div>
 
       <!-- CENTER: Bottle PNG floating on scene — smaller, shifted right -->
@@ -655,50 +676,49 @@
         display:flex;flex-direction:column;gap:.7rem;
         max-width:300px;">
         <div class="p-ico" style="background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3)">☕</div>
-        <div style="font-family:var(--font-serif);font-size:1.9rem;font-weight:700;
-                    color:var(--gold);line-height:1.15;">
+        <div class="card-title" style="font-family:var(--font-serif);font-size:1.9rem;font-weight:700;line-height:1.15;">
           Café Premium
         </div>
         <p style="font-size:.88rem;font-weight:300;color:rgba(245,238,223,.75);line-height:1.85;">
           Granos seleccionados de Villa Rica, Junín, San Martín y Cajamarca. Tostados artesanalmente con perfiles únicos de sabor.
         </p>
-        <span class="p-tag" style="align-self:flex-start">Specialty &amp; Gourmet</span>
+        <a href="products.html" class="p-tag" style="align-self:flex-start">Ver Café Premium →</a>
       </div>
     </div>
       <div class="p-card" style="
       grid-column:span 2;min-height:240px;
       position:relative;overflow:hidden;padding:0;
-      background:linear-gradient(135deg,var(--moss),var(--espresso));">
+      background:url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Gamatel_Cacao_Organic.jpg') center/cover no-repeat;">
       <div class="card-overlay"></div>
       <div style="position:relative;z-index:2;padding:1.8rem 2rem;display:flex;flex-direction:column;gap:.7rem;">
         <div class="p-ico" style="background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3)">🍫</div>
-        <div style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2">Cacao Orgánico</div>
+        <div class="card-title" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;line-height:1.2">Cacao Orgánico</div>
         <p style="font-size:.84rem;font-weight:300;color:rgba(245,238,223,.75);line-height:1.8">Cacao fino de aroma de la Amazonía peruana. Pasta, manteca, polvo y derivados para industria, pastelería y consumo gourmet.</p>
-        <span class="p-tag" style="align-self:flex-start">Origen Amazónico</span>
+        <a href="products.html" class="p-tag" style="align-self:flex-start">Ver Cacao →</a>
       </div>
     </div>
       <div class="p-card" style="
       grid-column:span 2;min-height:240px;
       position:relative;overflow:hidden;padding:0;
-      background:linear-gradient(135deg,var(--bark),var(--espresso));">
+      background:url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Gamatel_Derivados_De_Cafe.jpg') center/cover no-repeat;">
       <div class="card-overlay"></div>
       <div style="position:relative;z-index:2;padding:1.8rem 2rem;display:flex;flex-direction:column;gap:.7rem;">
         <div class="p-ico" style="background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3)">🧴</div>
-        <div style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2">Derivados de Café</div>
+        <div class="card-title" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;line-height:1.2">Derivados de Café</div>
         <p style="font-size:.84rem;font-weight:300;color:rgba(245,238,223,.75);line-height:1.8">Cremas, licores, extractos y cosméticos a base de café peruano. Línea innovadora para retail y gifting corporativo.</p>
-        <span class="p-tag" style="align-self:flex-start">Línea Gourmet</span>
+        <a href="products.html" class="p-tag" style="align-self:flex-start">Ver Derivados →</a>
       </div>
     </div>
       <div class="p-card" style="
       grid-column:span 2;min-height:240px;
       position:relative;overflow:hidden;padding:0;
-      background:linear-gradient(135deg,var(--roast),var(--espresso));">
+      background:url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Gamatel_Bebidas_Peruanos.jpg') center/cover no-repeat;">
       <div class="card-overlay"></div>
       <div style="position:relative;z-index:2;padding:1.8rem 2rem;display:flex;flex-direction:column;gap:.7rem;">
         <div class="p-ico" style="background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3)">🌿</div>
-        <div style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2">Bebidas Peruanas</div>
+        <div class="card-title" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;line-height:1.2">Bebidas Peruanas</div>
         <p style="font-size:.84rem;font-weight:300;color:rgba(245,238,223,.75);line-height:1.8">Infusiones andinas, café frío artesanal, cócteles de cacao y más. Tradición e innovación en cada botella.</p>
-        <span class="p-tag" style="align-self:flex-start">Tradición &amp; Innovación</span>
+        <a href="products.html" class="p-tag" style="align-self:flex-start">Ver Bebidas →</a>
       </div>
     </div>
     </div>
