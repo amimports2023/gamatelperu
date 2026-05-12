@@ -840,26 +840,54 @@
         <div style="margin-top:2rem"><a href="https://www.gamateltucafe.com" target="_blank" class="btn-gold">Ir al Marketplace ↗</a></div>
       </div>
       <div class="c-form rev">
-        <div class="f-row">
-          <div class="f-group"><label>Nombre</label><input type="text" placeholder="Nombre completo"/></div>
-          <div class="f-group"><label>Empresa</label><input type="text" placeholder="Su organización"/></div>
-        </div>
-        <div class="f-group"><label>Email</label><input type="email" placeholder="correo@empresa.com"/></div>
-        <div class="f-group">
-          <label>Tipo de Consulta</label>
-          <select>
-            <option>Seleccione...</option>
-            <option>Abastecimiento Institucional</option>
-            <option>Ferias / Eventos</option>
-            <option>Socio Distribuidor Nacional</option>
-            <option>Representante Internacional</option>
-            <option>Gifting Corporativo</option>
-            <option>Exportación</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="f-group"><label>Mensaje</label><textarea placeholder="Cuéntenos sobre su proyecto o necesidad…"></textarea></div>
-        <button class="btn-gold" style="width:100%;text-align:center;padding:1rem;font-size:.7rem" onclick="handleSubmit()">Enviar Consulta</button>
+        <!-- Netlify Form — submissions go to Netlify dashboard + email notification -->
+        <form name="contacto-gamatel" method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              action="/success.html">
+          <!-- Honeypot anti-spam field (hidden) -->
+          <input type="hidden" name="form-name" value="contacto-gamatel"/>
+          <p style="display:none"><input name="bot-field"/></p>
+
+          <div class="f-row">
+            <div class="f-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required/>
+            </div>
+            <div class="f-group">
+              <label for="empresa">Empresa</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Su organización"/>
+            </div>
+          </div>
+          <div class="f-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="correo@empresa.com" required/>
+          </div>
+          <div class="f-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+51 9XX XXX XXX"/>
+          </div>
+          <div class="f-group">
+            <label for="consulta">Tipo de Consulta</label>
+            <select id="consulta" name="consulta">
+              <option value="">Seleccione...</option>
+              <option>Abastecimiento Institucional</option>
+              <option>Ferias / Eventos</option>
+              <option>Socio Distribuidor Nacional</option>
+              <option>Representante Internacional</option>
+              <option>Gifting Corporativo</option>
+              <option>Exportación</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label for="mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntenos sobre su proyecto o necesidad…" required></textarea>
+          </div>
+          <button type="submit" class="btn-gold" style="width:100%;text-align:center;padding:1rem;font-size:.7rem;border:none;cursor:pointer">
+            Enviar Consulta →
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -904,7 +932,7 @@
   window.addEventListener('scroll', () => {
     document.getElementById('topBtn').classList.toggle('visible', scrollY > 400);
   });
-  function handleSubmit(){alert('¡Gracias por su mensaje!\nNos pondremos en contacto pronto.\n\nMarketplace: www.gamateltucafe.com')}
+  // Form handled by Netlify — no JS needed
 </script>
 <!-- ✅ WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/51955521968?text=Hola%20Gamatel%20Peru!%20Quisiera%20más%20información%20sobre%20sus%20productos." 
