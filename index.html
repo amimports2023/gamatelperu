@@ -6,6 +6,12 @@
 
   <!-- ✅ SEO PRIMARY -->
   <title>Gamatel Peru S.A.C | Café Specialty, Cacao & Bebidas Premium del Perú</title>
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#1c100a"/>
   <meta name="description" content="Gamatel Peru comercializa café 100% Arábica de Villa Rica, cacao orgánico amazónico y Pisco con Crema de Café. Distribución institucional, ferias y venta online. Lima, Perú."/>
   <meta name="keywords" content="café peruano, café specialty villa rica, cacao organico peru, pisco con crema de cafe, gamatel peru, café arabica peru, distribución café peru, café premium peru, cacao amazónico, bebidas peruanas"/>
   <meta name="author" content="Gamatel Peru"/>
@@ -116,7 +122,15 @@
     nav{position:fixed;top:0;inset-inline:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 5rem;transition:background var(--t),padding var(--t),border-color var(--t);border-bottom:1px solid transparent}
     nav.stuck{background:rgba(14,10,7,.94);backdrop-filter:blur(14px);padding:1rem 5rem;border-bottom-color:rgba(212,168,67,.12)}
     .logo{display:flex;align-items:center;gap:.9rem;text-decoration:none}
-    .logo-img{width:90px;height:90px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(201,151,58,.4))}
+    .logo-img{
+      width:90px;height:90px;object-fit:contain;flex-shrink:0;
+      filter:
+        drop-shadow(0 0 12px rgba(201,151,58,.7))
+        drop-shadow(0 0 24px rgba(180,100,20,.45))
+        brightness(1.15)
+        contrast(1.05)
+        saturate(1.2);
+    }
     .logo-text{display:flex;flex-direction:column;gap:1px}
     .logo-name{font-family:var(--font-serif);font-size:1.45rem;font-weight:700;letter-spacing:.04em;color:#ffffff;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,.4)}
     .logo-tagline{font-size:.62rem;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:#ffffff;opacity:.9}
