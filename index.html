@@ -157,15 +157,20 @@
     .btn-ghost:hover{border-color:var(--gold);background:rgba(212,168,67,.07);transform:translateY(-2px)}
     .hero-right{position:relative;opacity:0;animation:fadeIn 1.2s ease .5s forwards}
     .hero-card-stack{position:relative;height:480px}
-    .hcard{position:absolute;border:1px solid rgba(212,168,67,.18);border-radius:2px;background:linear-gradient(135deg,rgba(46,24,14,.9),rgba(14,10,7,.7));backdrop-filter:blur(8px);display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;overflow:hidden}
-    .hcard::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(14,10,7,.8),transparent 60%)}
-    .hcard-main{width:100%;height:380px;top:0;left:0;background:linear-gradient(to top,rgba(14,10,7,.85) 0%,rgba(14,10,7,.3) 60%,rgba(14,10,7,.1) 100%),url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Cafe_Con_Pisco_Gamatel.jpg') center/cover no-repeat}
-    .hcard-float{width:58%;height:200px;bottom:0;right:-24px;background:linear-gradient(to top,rgba(14,10,7,.9) 0%,rgba(14,10,7,.3) 100%),url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Andes_Peruano_Junin%201.jpg') center/cover no-repeat}
-    .hcard-label{position:relative;z-index:1;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
-    .hcard-title{position:relative;z-index:1;font-family:var(--font-serif);font-size:1.3rem;font-weight:600;color:var(--cream);line-height:1.2}
+    .hcard{position:absolute;border:1px solid rgba(212,168,67,.18);border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;overflow:hidden;transition:transform .4s ease}
+    .hcard::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,5,3,.88) 0%,rgba(8,5,3,.3) 45%,transparent 100%)}
+    .hcard-main{width:100%;height:390px;top:0;left:0;background:url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Cafe_Con_Pisco_Gamatel_Peru.jpg') center/cover no-repeat;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .hcard-float{width:56%;height:190px;bottom:-45px;right:-40px;background:url('https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Chanchamayo_Caffe_Cultive%201.jpg') center center/cover no-repeat;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(212,168,67,.2)}
+    .hcard-float::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 35%,rgba(8,5,3,.45) 75%,rgba(8,5,3,.7) 100%)}
+    .hcard-label{position:relative;z-index:1;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+    .hcard-title{position:relative;z-index:1;font-family:var(--font-serif);font-size:1.3rem;font-weight:600;color:var(--cream);line-height:1.2;text-shadow:0 1px 6px rgba(0,0,0,.5)}
     .hcard-ico{font-size:3.5rem;position:relative;z-index:1;margin-bottom:.5rem}
-    .hero-badge{position:absolute;top:30px;right:-16px;width:90px;height:90px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;animation:spin 20s linear infinite}
-    .hero-badge-inner{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--espresso);font-weight:700;line-height:1.4}
+    .hero-badge{position:absolute;top:20px;right:-10px;width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;animation:spin 20s linear infinite;
+      background:rgba(212,168,67,.5);
+      border:1.5px solid rgba(255,255,255,.35);
+      box-shadow:0 4px 16px rgba(0,0,0,.3);
+      backdrop-filter:blur(4px)}
+    .hero-badge-inner{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:#ffffff;font-weight:700;line-height:1.4;text-shadow:0 1px 4px rgba(0,0,0,.5)}
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -430,7 +435,9 @@
           <div class="hcard-label">Origen</div>
           <div class="hcard-title">Andes Peruanos</div>
         </div>
-        <div class="hero-badge"><div class="hero-badge-inner">100%<br/>Peruano<br/>® MR</div></div>
+        <div class="hero-badge">
+          <div class="hero-badge-inner">100%<br/>Peruano</div>
+        </div>
       </div>
     </div>
   </div>
