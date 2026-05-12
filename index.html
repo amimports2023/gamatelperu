@@ -739,45 +739,481 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="portfolio-inner">
-    <div class="rev"><div class="s-label">Presencia de Marca</div><h2 class="s-title">Activos en <strong>ferias y eventos</strong></h2></div>
-    <div class="port-grid rev">
-      <div class="port-item" style="background:var(--roast)">
-        <img src="https://document-export.canva.com/gr1ag/DAGryTgr1ag/103/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260510%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260510T134556Z&X-Amz-Expires=29147&X-Amz-Signature=dffe1dc6aa8f7b2f636a492771c5df2217b57d58a27c2f96c7bc849a2089f111&X-Amz-SignedHeaders=host" alt="Gamatel Portfolio" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .5s ease"/ loading="lazy" decoding="async">
-        <div class="port-lbl">Portafolio</div>
-        <div class="port-name">Gamatel<br/>Portfolio</div>
+<!-- ══════════════════════════════════════════════════════════
+     GAMATEL PERU — PRESENCIA DE MARCA
+     Premium Portfolio Gallery (Standalone HTML)
+     Drop anywhere in index.html body
+══════════════════════════════════════════════════════════ -->
+<style>
+  /* ── Portfolio Section ── */
+  #pg-section{
+    background:linear-gradient(180deg,#4d2b18 0%,#1c100a 35%,#2e180e 100%);
+    padding:5rem 0;overflow:hidden;position:relative;
+  }
+  #pg-section::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(212,168,67,.07) 0%,transparent 65%);
+  }
+  .pg-inner{max-width:1280px;margin:0 auto;padding:0 3rem;}
+  .pg-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem;}
+  .pg-label{display:flex;align-items:center;gap:10px;margin-bottom:.6rem;}
+  .pg-label span{width:20px;height:1px;background:#d4a843;display:inline-block;}
+  .pg-label p{color:#d4a843;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;margin:0;font-family:'Jost',sans-serif;}
+  .pg-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:#f5ede0;margin:.2rem 0;line-height:1.15;}
+  .pg-title em{font-style:italic;color:#d4a843;}
+  .pg-subtitle{font-size:.88rem;font-weight:300;color:rgba(245,237,224,.5);margin:.6rem 0 0;max-width:420px;line-height:1.75;font-family:'Jost',sans-serif;}
+  .pg-stats{display:flex;align-items:center;gap:1.8rem;}
+  .pg-stat{text-align:center;}
+  .pg-stat-val{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:#d4a843;line-height:1;}
+  .pg-stat-lbl{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,237,224,.35);margin-top:.3rem;font-family:'Jost',sans-serif;}
+  .pg-nav-btns{display:flex;gap:.5rem;margin-left:1rem;}
+  .pg-nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.28);
+    color:#d4a843;font-size:1.3rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .3s;font-family:'Jost',sans-serif;
+  }
+  .pg-nav-btn:hover{background:rgba(212,168,67,.22);}
+
+  /* ── Carousel ── */
+  .pg-carousel{
+    display:flex;gap:1.1rem;overflow-x:auto;
+    padding:0 3rem 1.2rem;scroll-snap-type:x mandatory;
+    scrollbar-width:none;cursor:grab;
+    -webkit-overflow-scrolling:touch;
+  }
+  .pg-carousel:active{cursor:grabbing;}
+  .pg-carousel::-webkit-scrollbar{display:none;}
+
+  /* ── Card ── */
+  .pg-card{
+    flex-shrink:0;width:270px;height:380px;border-radius:22px;
+    position:relative;overflow:hidden;cursor:pointer;
+    border:1px solid rgba(255,255,255,.08);
+    transition:transform .4s cubic-bezier(.25,.46,.45,.94),
+               box-shadow .4s,border-color .4s;
+    scroll-snap-align:start;
+    animation:pgFadeUp .6s ease both;
+  }
+  .pg-card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 0 0 1.5px var(--card-accent),0 24px 60px rgba(0,0,0,.7);
+    border-color:var(--card-accent);
+  }
+  .pg-card:hover .pg-card-cta{opacity:1;transform:translateY(0);}
+  .pg-card:hover .pg-card-img{transform:scale(1.07);}
+  .pg-card-img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;transition:transform .5s ease;
+  }
+  .pg-card-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(to top,
+      rgba(0,0,0,.92) 0%,
+      rgba(0,0,0,.55) 45%,
+      rgba(0,0,0,.18) 75%,
+      transparent 100%);
+  }
+  .pg-card-body{
+    position:absolute;inset:0;padding:1.3rem;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .pg-card-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .pg-card-badge{
+    font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    padding:.3rem .75rem;border-radius:20px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+    color:var(--card-accent);border-color:var(--card-accent);
+    font-family:'Jost',sans-serif;
+  }
+  .pg-card-num{
+    font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;
+    color:rgba(255,255,255,.05);line-height:1;
+  }
+  .pg-card-bottom{}
+  .pg-card-event{
+    font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--card-accent);margin:0 0 .3rem;font-family:'Jost',sans-serif;
+  }
+  .pg-card-name{
+    font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;
+    color:#fff;line-height:1.2;margin:0 0 .8rem;
+  }
+  .pg-card-metrics{display:flex;gap:1rem;margin-bottom:.65rem;}
+  .pg-card-metric{}
+  .pg-card-metric-val{
+    font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;
+    color:var(--card-accent);line-height:1;
+  }
+  .pg-card-metric-lbl{
+    font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(245,237,224,.4);font-family:'Jost',sans-serif;
+  }
+  .pg-card-cta{
+    font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
+    color:var(--card-accent);opacity:0;transform:translateY(6px);
+    transition:opacity .25s,transform .25s;font-family:'Jost',sans-serif;
+  }
+
+  /* ── Dots ── */
+  .pg-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.2rem;padding:0 3rem;}
+  .pg-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(212,168,67,.25);border:none;cursor:pointer;
+    transition:background .3s,transform .3s;padding:0;
+  }
+  .pg-dot.active{background:#d4a843;transform:scale(1.3);}
+
+  /* ── Modal ── */
+  .pg-modal{
+    display:none;position:fixed;inset:0;z-index:500;
+    background:rgba(6,4,2,.95);backdrop-filter:blur(14px);
+    align-items:center;justify-content:center;padding:1.5rem;
+  }
+  .pg-modal.open{display:flex;animation:pgFadeIn .35s ease;}
+  .pg-modal-inner{
+    background:linear-gradient(135deg,var(--m-bg,#2e180e) 0%,rgba(18,10,5,.98) 100%);
+    border:1px solid rgba(255,255,255,.1);border-radius:28px;
+    max-width:800px;width:100%;overflow:hidden;
+    box-shadow:0 40px 120px rgba(0,0,0,.8);
+    animation:pgSlideUp .4s cubic-bezier(.25,.46,.45,.94);
+  }
+  .pg-modal-top{display:grid;grid-template-columns:1fr 1fr;min-height:340px;}
+  .pg-modal-hero{position:relative;overflow:hidden;}
+  .pg-modal-hero-img{
+    width:100%;height:100%;object-fit:cover;min-height:300px;
+    transition:opacity .35s;
+  }
+  .pg-modal-hero-grad{
+    position:absolute;inset:0;
+    background:linear-gradient(to right,transparent 60%,rgba(18,10,5,.6) 100%);
+  }
+  .pg-modal-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    display:flex;justify-content:space-between;width:100%;padding:0 .8rem;
+  }
+  .pg-modal-nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(18,10,5,.65);border:1px solid rgba(255,255,255,.15);
+    color:#d4a843;font-size:1.3rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .25s;font-family:'Jost',sans-serif;
+  }
+  .pg-modal-nav-btn:hover{background:rgba(212,168,67,.25);}
+  .pg-modal-counter{
+    position:absolute;bottom:.8rem;left:50%;transform:translateX(-50%);
+    font-size:.6rem;letter-spacing:.1em;color:rgba(245,237,224,.5);
+    background:rgba(18,10,5,.7);padding:.25rem .7rem;border-radius:20px;
+    font-family:'Jost',sans-serif;
+  }
+  .pg-modal-info{padding:2rem;display:flex;flex-direction:column;justify-content:space-between;}
+  .pg-modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
+  .pg-modal-badge{
+    font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    padding:.3rem .8rem;border-radius:20px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    font-family:'Jost',sans-serif;
+  }
+  .pg-modal-close{
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(245,237,224,.07);border:1px solid rgba(245,237,224,.14);
+    color:rgba(245,237,224,.6);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:background .3s;
+    flex-shrink:0;
+  }
+  .pg-modal-close:hover{background:rgba(245,237,224,.15);color:#fff;}
+  .pg-modal-event{
+    font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+    margin:0 0 .4rem;font-family:'Jost',sans-serif;
+  }
+  .pg-modal-title{
+    font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;
+    color:#f5ede0;margin:0 0 .7rem;line-height:1.15;
+  }
+  .pg-modal-desc{
+    font-size:.85rem;font-weight:300;color:rgba(245,237,224,.65);
+    line-height:1.8;margin:0 0 1rem;font-family:'Jost',sans-serif;
+  }
+  .pg-modal-divider{width:36px;height:1px;opacity:.4;margin-bottom:1rem;}
+  .pg-modal-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+  .pg-modal-metric{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+    border-radius:12px;padding:.7rem .9rem;
+  }
+  .pg-modal-metric-val{
+    font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;line-height:1;
+  }
+  .pg-modal-metric-lbl{
+    font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(245,237,224,.4);margin-top:.25rem;font-family:'Jost',sans-serif;
+  }
+  .pg-modal-cta{
+    display:block;text-align:center;padding:.85rem;
+    border-radius:14px;font-family:'Jost',sans-serif;font-size:.7rem;
+    font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    text-decoration:none;margin-top:1.2rem;transition:opacity .3s;
+  }
+  .pg-modal-cta:hover{opacity:.85;}
+  .pg-modal-bottom{
+    border-top:1px solid rgba(255,255,255,.07);
+    padding:1rem 1.5rem;background:rgba(0,0,0,.18);
+  }
+  .pg-modal-bottom-lbl{
+    font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(245,237,224,.3);margin:0 0 .7rem;font-family:'Jost',sans-serif;
+  }
+  .pg-thumbs{display:flex;gap:.5rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.3rem;}
+  .pg-thumbs::-webkit-scrollbar{display:none;}
+  .pg-thumb{
+    flex-shrink:0;width:68px;height:50px;border-radius:8px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);cursor:pointer;
+    transition:opacity .25s,border-color .25s,transform .2s;opacity:.5;
+  }
+  .pg-thumb:hover{opacity:.8;transform:scale(1.05);}
+  .pg-thumb.active{opacity:1;border-width:2px;}
+  .pg-thumb img{width:100%;height:100%;object-fit:cover;}
+
+  /* ── Animations ── */
+  @keyframes pgFadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+  @keyframes pgFadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes pgSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+  /* ── Responsive ── */
+  @media(max-width:900px){
+    .pg-inner{padding:0 1.5rem;}
+    .pg-carousel{padding:0 1.5rem 1rem;}
+    .pg-modal-top{grid-template-columns:1fr;}
+    .pg-modal-hero-img{min-height:220px;}
+    .pg-modal-inner{border-radius:20px;}
+    .pg-stats{gap:1rem;}
+  }
+  @media(max-width:600px){
+    .pg-modal-info{padding:1.4rem;}
+    .pg-modal-title{font-size:1.3rem;}
+    .pg-card{width:230px;height:340px;}
+  }
+</style>
+
+<section id="pg-section">
+  <div class="pg-inner">
+    <div class="pg-header">
+      <div>
+        <div class="pg-label">
+          <span></span><p>Presencia de Marca</p>
+        </div>
+        <h2 class="pg-title">Activos en <em>ferias y eventos</em></h2>
+        <p class="pg-subtitle">Haz clic en cualquier evento para explorar la galería completa de imágenes y métricas.</p>
       </div>
-      <div class="port-item" style="background:var(--roast)">
-        <img src="https://document-export.canva.com/gr1ag/DAGryTgr1ag/91/thumbnail/0002.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260510%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260510T165214Z&X-Amz-Expires=20249&X-Amz-Signature=656ad04ce609321eea3c3cd46fa32a77a1f19ef8116f4e74f88d686d1fff0d25&X-Amz-SignedHeaders=host" alt="Expoalimentaria Lima" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .5s ease"/ loading="lazy" decoding="async">
-        <div class="port-lbl">Expo & Ferias</div>
-        <div class="port-name">Expoalimentaria<br/>Lima</div>
-      </div>
-      <div class="port-item" style="background:var(--roast)">
-        <img src="https://document-export.canva.com/gr1ag/DAGryTgr1ag/91/thumbnail/0003.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260509%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260509T223654Z&X-Amz-Expires=86033&X-Amz-Signature=051ece0cc522329660be2983e888826a75cd92a10f2d837730394318a5275cee&X-Amz-SignedHeaders=host" alt="Activaciones de Marca" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .5s ease"/ loading="lazy" decoding="async">
-        <div class="port-lbl">Presencia</div>
-        <div class="port-name">Activaciones<br/>de Marca</div>
-      </div>
-      <div class="port-item" style="background:var(--roast)">
-        <img src="https://document-export.canva.com/gr1ag/DAGryTgr1ag/96/thumbnail/0004.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260510%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260510T055345Z&X-Amz-Expires=58410&X-Amz-Signature=4d8d47fa59211127d0cc9a011527d3680c587e1cd084bf87e79245aeb726a90f&X-Amz-SignedHeaders=host" alt="Packaging Premium" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .5s ease"/ loading="lazy" decoding="async">
-        <div class="port-lbl">Packaging</div>
-        <div class="port-name">Packaging<br/>Premium</div>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+        <div class="pg-stats">
+          <div class="pg-stat"><div class="pg-stat-val">72+</div><div class="pg-stat-lbl">Fotos</div></div>
+          <div class="pg-stat"><div class="pg-stat-val">8</div><div class="pg-stat-lbl">Eventos</div></div>
+          <div class="pg-stat"><div class="pg-stat-val">50K+</div><div class="pg-stat-lbl">Alcance</div></div>
+        </div>
+        <div class="pg-nav-btns">
+          <button class="pg-nav-btn" id="pgPrev">‹</button>
+          <button class="pg-nav-btn" id="pgNext">›</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Carousel -->
+  <div class="pg-carousel" id="pgCarousel"></div>
+
+  <!-- Dots -->
+  <div class="pg-dots" id="pgDots"></div>
 </section>
 
-<!-- CULTURE -->
-<div id="culture">
-  <div class="culture-wrap rev">
-    <h2>Sabores que cuentan una historia</h2>
-    <p>Cada producto Gamatel lleva el legado de comunidades cafetaleras y cacaoteras peruanas — apoyando el comercio justo y la sostenibilidad desde el origen hasta la mesa.</p>
-    <div class="culture-tags">
-      <span class="c-tag">☕ Comercio Justo</span><span class="c-tag">🌱 Sostenible</span><span class="c-tag">🏔️ Origen Andino</span><span class="c-tag">🇵🇪 100% Peruano</span><span class="c-tag">® Marca Registrada</span>
+<!-- Modal -->
+<div class="pg-modal" id="pgModal">
+  <div class="pg-modal-inner" id="pgModalInner">
+    <div class="pg-modal-top">
+      <div class="pg-modal-hero">
+        <img class="pg-modal-hero-img" id="pgHeroImg" src="" alt="" loading="lazy"/>
+        <div class="pg-modal-hero-grad"></div>
+        <div class="pg-modal-nav">
+          <button class="pg-modal-nav-btn" onclick="pgNavPhoto(-1)">‹</button>
+          <button class="pg-modal-nav-btn" onclick="pgNavPhoto(1)">›</button>
+        </div>
+        <div class="pg-modal-counter" id="pgCounter"></div>
+      </div>
+      <div class="pg-modal-info" id="pgModalInfo"></div>
+    </div>
+    <div class="pg-modal-bottom">
+      <p class="pg-modal-bottom-lbl">Galería de imágenes</p>
+      <div class="pg-thumbs" id="pgThumbs"></div>
     </div>
   </div>
 </div>
+
+<script>
+(function(){
+  const EVENTS = [{"cat": "Portafolio Corporativo", "name": "Gamatel Peru", "event": "Brand Identity · 2025", "accent": "#d4a843", "bg": "#2e180e", "desc": "Identidad corporativa y portafolio completo de Gamatel Peru S.A.C. Marca registrada de café specialty, cacao orgánico y bebidas premium del Perú.", "metrics": [{"l": "Productos", "v": "15+"}, {"l": "Regiones", "v": "8"}, {"l": "Líneas", "v": "3"}, {"l": "Registrada", "v": "✓"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/103/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T134556Z&X-Amz-Expires=32747&X-Amz-Signature=88c7ef77e8549f7e0b90f83dc9179b46622a10a6b65e345845d0ec4e5293f26e&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F67b8cd18-414a-45b4-8fe3-c5cbfb00bf78/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAANk968twFs6AVwI06NgzQM4MO-Llv2q7z-fXbZ-l9fi0&exp=1778636063&osig=AAAAAAAAAAAAAAAAAAAAAAPwnSuL3FRIVrV3-TLc68zytNCKR8paRdixGgKP8aLM&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Ff6098879-a227-4f06-88bd-3ce9e7dcafc9/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAId9kFNbOvzxHBQNHf5afLBilm6ENuup7UO4ahhub2aU&exp=1778636520&osig=AAAAAAAAAAAAAAAAAAAAAPV4PHJ-t_2XNcz0jaaGrJEuMArEFHHOGU_4ynZr_WO_&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fbfd7bafe-d97d-4fb4-94e7-e452da56b0f6/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAK8Tqy6wT5b7LpXH884dAzrgBvv73u_vcwdvlcF-0Nn2&exp=1778636779&osig=AAAAAAAAAAAAAAAAAAAAAPlfJH85-tMFy1Yq_ueu2uBn58S-wcUmdcQJo911yMYW&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F0381f5ae-c3cd-4cfc-a8b2-85c336b0ff2d/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAGEXVcVn0eLNGtmNH-QWa3aZI5tkcV8UajYF6Hb0n1Pq&exp=1778635086&osig=AAAAAAAAAAAAAAAAAAAAAMj9SGRf1Ji9c1v8CFTepZwh1_diPl2JfZFa5iGm_enl&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fd6d5047b-b750-4f26-9185-42c37f46306e/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAAij4QkKmgtt7D-NLofP3Z-IUcg480c6KvvVslbgUXYX&exp=1778635553&osig=AAAAAAAAAAAAAAAAAAAAACpihaaf0VaWVe9N49Na3w7JlgONJ-DxAtiYWZAm55Bi&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9ec91306-8ded-435e-b1bd-9ee9d0988f67/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAHRtO0iB8O9ca5yH5jfAqEmU6CTwKwBzrqcDR-6pc0Fx&exp=1778635218&osig=AAAAAAAAAAAAAAAAAAAAAGi3gyE1pJduhLmLh5m4xa_TRYkTyqENjKatX-hd8Tfx&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9000a4a-afd0-47aa-9d3f-aa8dfb23c28f/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAJeDU9u_VzGFptWs6L36LoLZSGoKhAiZq1oxbyW0FSNW&exp=1778636302&osig=AAAAAAAAAAAAAAAAAAAAAAuVCGgCc4MsG5vltFtywcO5djQq16ydDFq9aFvz7G-_&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5b40ec63-7a56-4785-bc42-76d7c35b4444/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAPqpAHMSOBK0aNNg8CixC8I-6OaYmIspNSF6nIdj0VzT&exp=1778635000&osig=AAAAAAAAAAAAAAAAAAAAAPGCKyK-U95DFtf3nIYOza0My041TFm7ZUziuNALzJlG&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F555bc09c-2ece-49d0-9dfd-209f92c76309/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAEzqa5DfSMOo6agIT9H8lcpubKwfhdElzEW_EqkU9Fmf&exp=1778635834&osig=AAAAAAAAAAAAAAAAAAAAAGtI0-mFqfrauPEbgps42gILnehpIIyJj_Okv2-G1Nvj&signer=media-rpc"]}, {"cat": "Expo & Ferias", "name": "Expoalimentaria", "event": "Lima · Perú · 2025", "accent": "#c08530", "bg": "#1a0f0a", "desc": "Participación en Expoalimentaria Lima, la feria de alimentos más importante de América Latina. Gamatel presentó su línea completa de cafés specialty y cacao orgánico amazónico.", "metrics": [{"l": "Visitantes", "v": "50K+"}, {"l": "Días", "v": "3"}, {"l": "Países", "v": "25+"}, {"l": "Contactos", "v": "200+"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/91/thumbnail/0002.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T165214Z&X-Amz-Expires=23849&X-Amz-Signature=b4ec7adb8927bb6e2a8264b1bd97b5a85c63ee2fb51532e6c79dbf592beefafe&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fd6d5047b-b750-4f26-9185-42c37f46306e/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAAij4QkKmgtt7D-NLofP3Z-IUcg480c6KvvVslbgUXYX&exp=1778635553&osig=AAAAAAAAAAAAAAAAAAAAACpihaaf0VaWVe9N49Na3w7JlgONJ-DxAtiYWZAm55Bi&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9ec91306-8ded-435e-b1bd-9ee9d0988f67/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAHRtO0iB8O9ca5yH5jfAqEmU6CTwKwBzrqcDR-6pc0Fx&exp=1778635218&osig=AAAAAAAAAAAAAAAAAAAAAGi3gyE1pJduhLmLh5m4xa_TRYkTyqENjKatX-hd8Tfx&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9000a4a-afd0-47aa-9d3f-aa8dfb23c28f/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAJeDU9u_VzGFptWs6L36LoLZSGoKhAiZq1oxbyW0FSNW&exp=1778636302&osig=AAAAAAAAAAAAAAAAAAAAAAuVCGgCc4MsG5vltFtywcO5djQq16ydDFq9aFvz7G-_&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5b40ec63-7a56-4785-bc42-76d7c35b4444/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAPqpAHMSOBK0aNNg8CixC8I-6OaYmIspNSF6nIdj0VzT&exp=1778635000&osig=AAAAAAAAAAAAAAAAAAAAAPGCKyK-U95DFtf3nIYOza0My041TFm7ZUziuNALzJlG&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F555bc09c-2ece-49d0-9dfd-209f92c76309/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAEzqa5DfSMOo6agIT9H8lcpubKwfhdElzEW_EqkU9Fmf&exp=1778635834&osig=AAAAAAAAAAAAAAAAAAAAAGtI0-mFqfrauPEbgps42gILnehpIIyJj_Okv2-G1Nvj&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F581c5545-deea-41e1-af8d-e23321753f29/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAKyy_MqrymjqNKI-TahgMf6gMJJnQoDq6cpyaPK-BlRQ&exp=1778637219&osig=AAAAAAAAAAAAAAAAAAAAABIzLNkYxZnMAGU4UxylG8duzly53h_ij1kINE0gu9D7&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fb51238a1-72a4-4385-8577-0551ee362a62/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAIu-EwSi4hEYyS3YZ11nsKS-yhk-3ZdIRNomk4cWBwCw&exp=1778636186&osig=AAAAAAAAAAAAAAAAAAAAAEYUzuBo2dAxnx0uqCTk9du1pDm7m1e576aSlxciIvQv&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F289ea153-8ce9-4875-84a6-8acd966260c6/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAANUxDNieDSG27b6L0if9L84eF_cDCBxfqpV5UT2IspNJ&exp=1778636033&osig=AAAAAAAAAAAAAAAAAAAAAI3PedecwJmecCvasYbzLMYlIivzKdRs-gx_i2THqndW&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F55a3cfec-ebdc-4467-bd73-d28b50aa4e03/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGud5Ce1D8WEJg69r_WeLXvsFvTlQ6jHPFeqN8thR7Z8&exp=1778634871&osig=AAAAAAAAAAAAAAAAAAAAALUibbGU5aD0LYxhNqjaTYVeEpgp0rXa5ETBPwIFLI_n&signer=media-rpc"]}, {"cat": "Activaciones", "name": "Degustaciones", "event": "Lima · Eventos Premium", "accent": "#7aaa6a", "bg": "#0a1a0a", "desc": "Activaciones directas al consumidor en eventos de lujo. Degustaciones de café specialty y presentaciones del Pisco con Crema de Café. Experiencias sensoriales únicas.", "metrics": [{"l": "Eventos", "v": "12+"}, {"l": "Tazas", "v": "1,500+"}, {"l": "Conversiones", "v": "35%"}, {"l": "NPS", "v": "9.2"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/91/thumbnail/0003.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260511%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260511T223654Z&X-Amz-Expires=89633&X-Amz-Signature=de0b87f74f8b344e43ba3be74807a2f1679b44d56e5f620ede70a0fcc5aecb72&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F555bc09c-2ece-49d0-9dfd-209f92c76309/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAEzqa5DfSMOo6agIT9H8lcpubKwfhdElzEW_EqkU9Fmf&exp=1778635834&osig=AAAAAAAAAAAAAAAAAAAAAGtI0-mFqfrauPEbgps42gILnehpIIyJj_Okv2-G1Nvj&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F581c5545-deea-41e1-af8d-e23321753f29/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAKyy_MqrymjqNKI-TahgMf6gMJJnQoDq6cpyaPK-BlRQ&exp=1778637219&osig=AAAAAAAAAAAAAAAAAAAAABIzLNkYxZnMAGU4UxylG8duzly53h_ij1kINE0gu9D7&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fb51238a1-72a4-4385-8577-0551ee362a62/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAIu-EwSi4hEYyS3YZ11nsKS-yhk-3ZdIRNomk4cWBwCw&exp=1778636186&osig=AAAAAAAAAAAAAAAAAAAAAEYUzuBo2dAxnx0uqCTk9du1pDm7m1e576aSlxciIvQv&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F289ea153-8ce9-4875-84a6-8acd966260c6/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAANUxDNieDSG27b6L0if9L84eF_cDCBxfqpV5UT2IspNJ&exp=1778636033&osig=AAAAAAAAAAAAAAAAAAAAAI3PedecwJmecCvasYbzLMYlIivzKdRs-gx_i2THqndW&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F55a3cfec-ebdc-4467-bd73-d28b50aa4e03/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGud5Ce1D8WEJg69r_WeLXvsFvTlQ6jHPFeqN8thR7Z8&exp=1778634871&osig=AAAAAAAAAAAAAAAAAAAAALUibbGU5aD0LYxhNqjaTYVeEpgp0rXa5ETBPwIFLI_n&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9fcf3818-d172-4384-b38f-2e643ed468cc/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAADKhKOERqX1xWSvHk6JOvDTmYECTZJsDB242xHt0CA-q&exp=1778636896&osig=AAAAAAAAAAAAAAAAAAAAAH493BWp83BfWnkU3kSiU7EDu4WMZzi8bDMafQqEj4xp&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Faf04eaf0-8ead-48dc-b4df-9077164db093/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAMjRv7gku8beFWWhnd9gvY1bySMvCk5411CShClLX9Yf&exp=1778636697&osig=AAAAAAAAAAAAAAAAAAAAADRj4THNoZaYDkl47wZzjFzeHNt0m7W0fmM_uCC7U0UK&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fdb5e9df9-d7fc-406a-9ec7-ce8a68911b09/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGXWz3q5WZVdkj-uUVt5XKlVKx9HUf_K14yEGmCtn3DE&exp=1778636399&osig=AAAAAAAAAAAAAAAAAAAAAGmRxkNm97o_5XBovHGGDjs7Y3GbbQsVcF8Mb_g4Fkx1&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5e10af74-dbf7-422c-9b42-3f9dfd9335a8/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAACIVmAKCKFJO-skvvSJU83Jp5Tp_BwOaF70jjOQqs_9X&exp=1778636046&osig=AAAAAAAAAAAAAAAAAAAAABd5Oq3wMpttMmNOFQC2TwkUI7JMBa-MOwPIhjSHCaIe&signer=media-rpc"]}, {"cat": "Packaging Premium", "name": "Línea Café", "event": "Diseño & Branding · 2025", "accent": "#d4a843", "bg": "#2a1a08", "desc": "Packaging premium para la línea completa: Achocolatado, Tradicional, Premium Geisha y Colección. Diseño que captura la identidad andina con estética de lujo internacional.", "metrics": [{"l": "SKUs", "v": "4"}, {"l": "Formato", "v": "250gr"}, {"l": "Reg. Sanitario", "v": "✓"}, {"l": "Made in", "v": "Perú"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/96/thumbnail/0004.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T055345Z&X-Amz-Expires=62010&X-Amz-Signature=5620d86a2214526d971b4423209b84bd5d10847e88ffd662b0844bd4bf6dc305&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F55a3cfec-ebdc-4467-bd73-d28b50aa4e03/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGud5Ce1D8WEJg69r_WeLXvsFvTlQ6jHPFeqN8thR7Z8&exp=1778634871&osig=AAAAAAAAAAAAAAAAAAAAALUibbGU5aD0LYxhNqjaTYVeEpgp0rXa5ETBPwIFLI_n&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9fcf3818-d172-4384-b38f-2e643ed468cc/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAADKhKOERqX1xWSvHk6JOvDTmYECTZJsDB242xHt0CA-q&exp=1778636896&osig=AAAAAAAAAAAAAAAAAAAAAH493BWp83BfWnkU3kSiU7EDu4WMZzi8bDMafQqEj4xp&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Faf04eaf0-8ead-48dc-b4df-9077164db093/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAMjRv7gku8beFWWhnd9gvY1bySMvCk5411CShClLX9Yf&exp=1778636697&osig=AAAAAAAAAAAAAAAAAAAAADRj4THNoZaYDkl47wZzjFzeHNt0m7W0fmM_uCC7U0UK&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fdb5e9df9-d7fc-406a-9ec7-ce8a68911b09/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGXWz3q5WZVdkj-uUVt5XKlVKx9HUf_K14yEGmCtn3DE&exp=1778636399&osig=AAAAAAAAAAAAAAAAAAAAAGmRxkNm97o_5XBovHGGDjs7Y3GbbQsVcF8Mb_g4Fkx1&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5e10af74-dbf7-422c-9b42-3f9dfd9335a8/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAACIVmAKCKFJO-skvvSJU83Jp5Tp_BwOaF70jjOQqs_9X&exp=1778636046&osig=AAAAAAAAAAAAAAAAAAAAABd5Oq3wMpttMmNOFQC2TwkUI7JMBa-MOwPIhjSHCaIe&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9e132a0-7aed-495c-8004-1e77dda7f0c1/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAABoKaucrXayjD4omAOzYd-LfrKH3SsDQ5EcVOFNqYTaR&exp=1778634928&osig=AAAAAAAAAAAAAAAAAAAAAMDc0QqM9u5aqkOfnW0LxXXIDIGDwBdN6CznuHILizfc&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Ffd0e1f70-2fe3-4424-8d6d-0b2e0f1cb063/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAOpnbuNSM_I-Y60htx3eiYDfjZM3hnLjqSn6zSgAxpNi&exp=1778636496&osig=AAAAAAAAAAAAAAAAAAAAAJaI6jjQHf8uIaVH4qUdWpBs3_n70gLuBLgiLRmzSYxf&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F879dcf2f-c712-43e9-9913-9453c48ee4af/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAFqtEy1um2waNgrvGYpTlNL-28DPQoZWIA3VTJ41Udxl&exp=1778635971&osig=AAAAAAAAAAAAAAAAAAAAAANtVKCSyx8l6gEIPwjOEJKe3V6GpU4-DDkqj7uipUDv&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F861760e8-fff3-41e7-8d91-f2c06c0ef811/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAL5BQI9TU7cU1Nb-Ob4Gh0hzVC3g4NrWClCljZKl_CMU&exp=1778636970&osig=AAAAAAAAAAAAAAAAAAAAAAlpgIONO5inSSutWxKueP4-3bZDhm07NzjWkEmJsgVn&signer=media-rpc"]}, {"cat": "Branding Visual", "name": "Identidad Gráfica", "event": "Brand Book · 2025", "accent": "#d4a843", "bg": "#1a0e05", "desc": "Sistema de identidad visual completo: manual de marca, paleta cromática, tipografía y elementos decorativos inspirados en la cultura andina. Colibri® como símbolo central de la marca.", "metrics": [{"l": "Variaciones", "v": "6"}, {"l": "Colores", "v": "5"}, {"l": "Tipografías", "v": "2"}, {"l": "Elementos", "v": "12+"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/102/thumbnail/0005.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T133116Z&X-Amz-Expires=34556&X-Amz-Signature=7ee047b855600e76d8d7ab1d3ab1355b9f7f371cce96142932e0c83f8b45123f&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fbfd7bafe-d97d-4fb4-94e7-e452da56b0f6/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAK8Tqy6wT5b7LpXH884dAzrgBvv73u_vcwdvlcF-0Nn2&exp=1778636779&osig=AAAAAAAAAAAAAAAAAAAAAPlfJH85-tMFy1Yq_ueu2uBn58S-wcUmdcQJo911yMYW&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F0381f5ae-c3cd-4cfc-a8b2-85c336b0ff2d/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAGEXVcVn0eLNGtmNH-QWa3aZI5tkcV8UajYF6Hb0n1Pq&exp=1778635086&osig=AAAAAAAAAAAAAAAAAAAAAMj9SGRf1Ji9c1v8CFTepZwh1_diPl2JfZFa5iGm_enl&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fd6d5047b-b750-4f26-9185-42c37f46306e/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAAij4QkKmgtt7D-NLofP3Z-IUcg480c6KvvVslbgUXYX&exp=1778635553&osig=AAAAAAAAAAAAAAAAAAAAACpihaaf0VaWVe9N49Na3w7JlgONJ-DxAtiYWZAm55Bi&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9ec91306-8ded-435e-b1bd-9ee9d0988f67/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAHRtO0iB8O9ca5yH5jfAqEmU6CTwKwBzrqcDR-6pc0Fx&exp=1778635218&osig=AAAAAAAAAAAAAAAAAAAAAGi3gyE1pJduhLmLh5m4xa_TRYkTyqENjKatX-hd8Tfx&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9000a4a-afd0-47aa-9d3f-aa8dfb23c28f/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAJeDU9u_VzGFptWs6L36LoLZSGoKhAiZq1oxbyW0FSNW&exp=1778636302&osig=AAAAAAAAAAAAAAAAAAAAAAuVCGgCc4MsG5vltFtywcO5djQq16ydDFq9aFvz7G-_&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5b40ec63-7a56-4785-bc42-76d7c35b4444/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAPqpAHMSOBK0aNNg8CixC8I-6OaYmIspNSF6nIdj0VzT&exp=1778635000&osig=AAAAAAAAAAAAAAAAAAAAAPGCKyK-U95DFtf3nIYOza0My041TFm7ZUziuNALzJlG&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F555bc09c-2ece-49d0-9dfd-209f92c76309/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAEzqa5DfSMOo6agIT9H8lcpubKwfhdElzEW_EqkU9Fmf&exp=1778635834&osig=AAAAAAAAAAAAAAAAAAAAAGtI0-mFqfrauPEbgps42gILnehpIIyJj_Okv2-G1Nvj&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F581c5545-deea-41e1-af8d-e23321753f29/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAKyy_MqrymjqNKI-TahgMf6gMJJnQoDq6cpyaPK-BlRQ&exp=1778637219&osig=AAAAAAAAAAAAAAAAAAAAABIzLNkYxZnMAGU4UxylG8duzly53h_ij1kINE0gu9D7&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fb51238a1-72a4-4385-8577-0551ee362a62/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAIu-EwSi4hEYyS3YZ11nsKS-yhk-3ZdIRNomk4cWBwCw&exp=1778636186&osig=AAAAAAAAAAAAAAAAAAAAAEYUzuBo2dAxnx0uqCTk9du1pDm7m1e576aSlxciIvQv&signer=media-rpc"]}, {"cat": "Eventos Institucionales", "name": "B2B Lima", "event": "Distribución · 2025", "accent": "#7aaa6a", "bg": "#081408", "desc": "Reuniones institucionales con cadenas hoteleras, restaurantes y distribuidores mayoristas. Presentaciones del portafolio completo para alianzas estratégicas de distribución.", "metrics": [{"l": "Reuniones", "v": "30+"}, {"l": "Alianzas", "v": "8"}, {"l": "Distribuidores", "v": "5"}, {"l": "Hoteles", "v": "3"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/52/thumbnail/0002.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T210916Z&X-Amz-Expires=6235&X-Amz-Signature=90974209776df11ec3429dcf7c6a9161ccfd740bb3c500b211f470babd794852&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9000a4a-afd0-47aa-9d3f-aa8dfb23c28f/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAJeDU9u_VzGFptWs6L36LoLZSGoKhAiZq1oxbyW0FSNW&exp=1778636302&osig=AAAAAAAAAAAAAAAAAAAAAAuVCGgCc4MsG5vltFtywcO5djQq16ydDFq9aFvz7G-_&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5b40ec63-7a56-4785-bc42-76d7c35b4444/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAPqpAHMSOBK0aNNg8CixC8I-6OaYmIspNSF6nIdj0VzT&exp=1778635000&osig=AAAAAAAAAAAAAAAAAAAAAPGCKyK-U95DFtf3nIYOza0My041TFm7ZUziuNALzJlG&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F555bc09c-2ece-49d0-9dfd-209f92c76309/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAEzqa5DfSMOo6agIT9H8lcpubKwfhdElzEW_EqkU9Fmf&exp=1778635834&osig=AAAAAAAAAAAAAAAAAAAAAGtI0-mFqfrauPEbgps42gILnehpIIyJj_Okv2-G1Nvj&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F581c5545-deea-41e1-af8d-e23321753f29/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAKyy_MqrymjqNKI-TahgMf6gMJJnQoDq6cpyaPK-BlRQ&exp=1778637219&osig=AAAAAAAAAAAAAAAAAAAAABIzLNkYxZnMAGU4UxylG8duzly53h_ij1kINE0gu9D7&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fb51238a1-72a4-4385-8577-0551ee362a62/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAIu-EwSi4hEYyS3YZ11nsKS-yhk-3ZdIRNomk4cWBwCw&exp=1778636186&osig=AAAAAAAAAAAAAAAAAAAAAEYUzuBo2dAxnx0uqCTk9du1pDm7m1e576aSlxciIvQv&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F289ea153-8ce9-4875-84a6-8acd966260c6/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAANUxDNieDSG27b6L0if9L84eF_cDCBxfqpV5UT2IspNJ&exp=1778636033&osig=AAAAAAAAAAAAAAAAAAAAAI3PedecwJmecCvasYbzLMYlIivzKdRs-gx_i2THqndW&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F55a3cfec-ebdc-4467-bd73-d28b50aa4e03/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGud5Ce1D8WEJg69r_WeLXvsFvTlQ6jHPFeqN8thR7Z8&exp=1778634871&osig=AAAAAAAAAAAAAAAAAAAAALUibbGU5aD0LYxhNqjaTYVeEpgp0rXa5ETBPwIFLI_n&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9fcf3818-d172-4384-b38f-2e643ed468cc/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAADKhKOERqX1xWSvHk6JOvDTmYECTZJsDB242xHt0CA-q&exp=1778636896&osig=AAAAAAAAAAAAAAAAAAAAAH493BWp83BfWnkU3kSiU7EDu4WMZzi8bDMafQqEj4xp&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Faf04eaf0-8ead-48dc-b4df-9077164db093/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAMjRv7gku8beFWWhnd9gvY1bySMvCk5411CShClLX9Yf&exp=1778636697&osig=AAAAAAAAAAAAAAAAAAAAADRj4THNoZaYDkl47wZzjFzeHNt0m7W0fmM_uCC7U0UK&signer=media-rpc"]}, {"cat": "Brand Experience", "name": "Cata Specialty", "event": "Lima · Perú", "accent": "#d4a843", "bg": "#2a1808", "desc": "Catas de café specialty con baristas certificados. Desde el origen hasta la taza: proceso, notas de cata y maridaje con cacao del VRAEM. Experiencia sensorial completa.", "metrics": [{"l": "Catas", "v": "15+"}, {"l": "Asistentes", "v": "300+"}, {"l": "Puntuación", "v": "86pts"}, {"l": "Satisfacción", "v": "98%"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/87/thumbnail/0006.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T151525Z&X-Amz-Expires=29045&X-Amz-Signature=44501260a3ad2d0a1cdcaaab2ef477c0ee7c591188d29b7a56fe5a9ab24d926d&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fb51238a1-72a4-4385-8577-0551ee362a62/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAIu-EwSi4hEYyS3YZ11nsKS-yhk-3ZdIRNomk4cWBwCw&exp=1778636186&osig=AAAAAAAAAAAAAAAAAAAAAEYUzuBo2dAxnx0uqCTk9du1pDm7m1e576aSlxciIvQv&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F289ea153-8ce9-4875-84a6-8acd966260c6/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAANUxDNieDSG27b6L0if9L84eF_cDCBxfqpV5UT2IspNJ&exp=1778636033&osig=AAAAAAAAAAAAAAAAAAAAAI3PedecwJmecCvasYbzLMYlIivzKdRs-gx_i2THqndW&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F55a3cfec-ebdc-4467-bd73-d28b50aa4e03/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGud5Ce1D8WEJg69r_WeLXvsFvTlQ6jHPFeqN8thR7Z8&exp=1778634871&osig=AAAAAAAAAAAAAAAAAAAAALUibbGU5aD0LYxhNqjaTYVeEpgp0rXa5ETBPwIFLI_n&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F9fcf3818-d172-4384-b38f-2e643ed468cc/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAADKhKOERqX1xWSvHk6JOvDTmYECTZJsDB242xHt0CA-q&exp=1778636896&osig=AAAAAAAAAAAAAAAAAAAAAH493BWp83BfWnkU3kSiU7EDu4WMZzi8bDMafQqEj4xp&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Faf04eaf0-8ead-48dc-b4df-9077164db093/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAMjRv7gku8beFWWhnd9gvY1bySMvCk5411CShClLX9Yf&exp=1778636697&osig=AAAAAAAAAAAAAAAAAAAAADRj4THNoZaYDkl47wZzjFzeHNt0m7W0fmM_uCC7U0UK&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fdb5e9df9-d7fc-406a-9ec7-ce8a68911b09/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGXWz3q5WZVdkj-uUVt5XKlVKx9HUf_K14yEGmCtn3DE&exp=1778636399&osig=AAAAAAAAAAAAAAAAAAAAAGmRxkNm97o_5XBovHGGDjs7Y3GbbQsVcF8Mb_g4Fkx1&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5e10af74-dbf7-422c-9b42-3f9dfd9335a8/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAACIVmAKCKFJO-skvvSJU83Jp5Tp_BwOaF70jjOQqs_9X&exp=1778636046&osig=AAAAAAAAAAAAAAAAAAAAABd5Oq3wMpttMmNOFQC2TwkUI7JMBa-MOwPIhjSHCaIe&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9e132a0-7aed-495c-8004-1e77dda7f0c1/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAABoKaucrXayjD4omAOzYd-LfrKH3SsDQ5EcVOFNqYTaR&exp=1778634928&osig=AAAAAAAAAAAAAAAAAAAAAMDc0QqM9u5aqkOfnW0LxXXIDIGDwBdN6CznuHILizfc&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Ffd0e1f70-2fe3-4424-8d6d-0b2e0f1cb063/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAOpnbuNSM_I-Y60htx3eiYDfjZM3hnLjqSn6zSgAxpNi&exp=1778636496&osig=AAAAAAAAAAAAAAAAAAAAAJaI6jjQHf8uIaVH4qUdWpBs3_n70gLuBLgiLRmzSYxf&signer=media-rpc"]}, {"cat": "Ferias Internacionales", "name": "Exportación", "event": "Mercados · 2025", "accent": "#b07de0", "bg": "#1a0a1a", "desc": "Estrategia de exportación hacia mercados internacionales. Gamatel en ferias especializadas de café y productos gourmet para posicionar el café peruano globalmente.", "metrics": [{"l": "Países objetivo", "v": "8"}, {"l": "Ferias int'l", "v": "4"}, {"l": "Contactos", "v": "50+"}, {"l": "Leads", "v": "20+"}], "hero": "https://document-export.canva.com/gr1ag/DAGryTgr1ag/52/thumbnail/0004.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWEOTUD6Q%2F20260512%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260512T155121Z&X-Amz-Expires=26750&X-Amz-Signature=90161af91ec114787ff6850cd266d2bfe9891f5b9f66885af7b39edc5aef88ee&X-Amz-SignedHeaders=host", "photos": ["https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Faf04eaf0-8ead-48dc-b4df-9077164db093/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAMjRv7gku8beFWWhnd9gvY1bySMvCk5411CShClLX9Yf&exp=1778636697&osig=AAAAAAAAAAAAAAAAAAAAADRj4THNoZaYDkl47wZzjFzeHNt0m7W0fmM_uCC7U0UK&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fdb5e9df9-d7fc-406a-9ec7-ce8a68911b09/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAGXWz3q5WZVdkj-uUVt5XKlVKx9HUf_K14yEGmCtn3DE&exp=1778636399&osig=AAAAAAAAAAAAAAAAAAAAAGmRxkNm97o_5XBovHGGDjs7Y3GbbQsVcF8Mb_g4Fkx1&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F5e10af74-dbf7-422c-9b42-3f9dfd9335a8/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAACIVmAKCKFJO-skvvSJU83Jp5Tp_BwOaF70jjOQqs_9X&exp=1778636046&osig=AAAAAAAAAAAAAAAAAAAAABd5Oq3wMpttMmNOFQC2TwkUI7JMBa-MOwPIhjSHCaIe&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Fc9e132a0-7aed-495c-8004-1e77dda7f0c1/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAABoKaucrXayjD4omAOzYd-LfrKH3SsDQ5EcVOFNqYTaR&exp=1778634928&osig=AAAAAAAAAAAAAAAAAAAAAMDc0QqM9u5aqkOfnW0LxXXIDIGDwBdN6CznuHILizfc&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Ffd0e1f70-2fe3-4424-8d6d-0b2e0f1cb063/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAOpnbuNSM_I-Y60htx3eiYDfjZM3hnLjqSn6zSgAxpNi&exp=1778636496&osig=AAAAAAAAAAAAAAAAAAAAAJaI6jjQHf8uIaVH4qUdWpBs3_n70gLuBLgiLRmzSYxf&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F879dcf2f-c712-43e9-9913-9453c48ee4af/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAFqtEy1um2waNgrvGYpTlNL-28DPQoZWIA3VTJ41Udxl&exp=1778635971&osig=AAAAAAAAAAAAAAAAAAAAAANtVKCSyx8l6gEIPwjOEJKe3V6GpU4-DDkqj7uipUDv&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F861760e8-fff3-41e7-8d91-f2c06c0ef811/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAAL5BQI9TU7cU1Nb-Ob4Gh0hzVC3g4NrWClCljZKl_CMU&exp=1778636970&osig=AAAAAAAAAAAAAAAAAAAAAAlpgIONO5inSSutWxKueP4-3bZDhm07NzjWkEmJsgVn&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2Ffa4a6ddd-8e00-40b0-9fef-c9b04717b90f/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAAAAAANUoJnuELiOZ3CDmKvzENTiLKJEAUe11eTrbBbgg2Syw&exp=1778634925&osig=AAAAAAAAAAAAAAAAAAAAAK1351sDKV3EzWpD08vSwDl04lFXaWfOCnlmomX2zrOf&signer=media-rpc", "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F422c13f9-b7dd-4278-a986-64102751e426/watermark:F/width:112?csig=AAAAAAAAAAAAAAAAACpfQVkSinp88uw4TSsuzYaAp4x5QtZV19imYwtF96Ry&exp=1778635912&osig=AAAAAAAAAAAAAAAAAAAAADQcVHx7IC7M0oACMTKEhlog5ceHy2cqAyhxS9-hZ1cz&signer=media-rpc"]}];
+  let curPhoto = 0, curEvent = null;
+
+  /* ── Build Cards ── */
+  const carousel = document.getElementById('pgCarousel');
+  const dots = document.getElementById('pgDots');
+
+  EVENTS.forEach(function(ev, i) {
+    const card = document.createElement('div');
+    card.className = 'pg-card';
+    card.style.cssText = '--card-accent:' + ev.accent + ';animation-delay:' + (i*0.08) + 's';
+    card.innerHTML = [
+      '<img class="pg-card-img" src="' + ev.hero + '" alt="' + ev.name + '" loading="lazy"/>',
+      '<div class="pg-card-overlay"></div>',
+      '<div class="pg-card-body">',
+        '<div class="pg-card-top">',
+          '<span class="pg-card-badge" style="color:' + ev.accent + ';border-color:' + ev.accent + '44">' + ev.cat + '</span>',
+          '<span class="pg-card-num">' + String(i+1).padStart(2,'0') + '</span>',
+        '</div>',
+        '<div class="pg-card-bottom">',
+          '<p class="pg-card-event" style="color:' + ev.accent + '">' + ev.event + '</p>',
+          '<h3 class="pg-card-name">' + ev.name + '</h3>',
+          '<div class="pg-card-metrics">',
+            ev.metrics.slice(0,2).map(function(m) {
+              return '<div class="pg-card-metric"><div class="pg-card-metric-val" style="color:' + ev.accent + '">' + m.v + '</div><div class="pg-card-metric-lbl">' + m.l + '</div></div>';
+            }).join(''),
+          '</div>',
+          '<div class="pg-card-cta" style="color:' + ev.accent + '">Ver galería →</div>',
+        '</div>',
+      '</div>',
+    ].join('');
+    card.addEventListener('click', function() { pgOpenModal(i); });
+    carousel.appendChild(card);
+
+    /* Dot */
+    const dot = document.createElement('button');
+    dot.className = 'pg-dot' + (i===0?' active':'');
+    dot.addEventListener('click', function() {
+      carousel.scrollTo({left: i * 290, behavior:'smooth'});
+    });
+    dots.appendChild(dot);
+  });
+
+  /* ── Nav Buttons ── */
+  document.getElementById('pgPrev').addEventListener('click', function() {
+    carousel.scrollBy({left: -290, behavior:'smooth'});
+  });
+  document.getElementById('pgNext').addEventListener('click', function() {
+    carousel.scrollBy({left: 290, behavior:'smooth'});
+  });
+
+  /* ── Dot Sync ── */
+  carousel.addEventListener('scroll', function() {
+    const idx = Math.round(carousel.scrollLeft / 290);
+    document.querySelectorAll('.pg-dot').forEach(function(d,i) {
+      d.classList.toggle('active', i===idx);
+    });
+  });
+
+  /* ── Drag to Scroll ── */
+  let isDrag=false, sx=0, sl=0;
+  carousel.addEventListener('mousedown', function(e) { isDrag=true; sx=e.pageX-carousel.offsetLeft; sl=carousel.scrollLeft; carousel.style.cursor='grabbing'; });
+  carousel.addEventListener('mousemove', function(e) { if(!isDrag) return; carousel.scrollLeft = sl-(e.pageX-carousel.offsetLeft-sx); });
+  ['mouseup','mouseleave'].forEach(function(ev) { carousel.addEventListener(ev, function() { isDrag=false; carousel.style.cursor='grab'; }); });
+
+  /* ── Modal ── */
+  function pgOpenModal(idx) {
+    curEvent = EVENTS[idx];
+    curPhoto = 0;
+    const modal = document.getElementById('pgModal');
+    const inner = document.getElementById('pgModalInner');
+    inner.style.setProperty('--m-bg', curEvent.bg);
+    pgUpdateHero();
+    pgBuildInfo();
+    pgBuildThumbs();
+    modal.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  window.pgOpenModal = pgOpenModal;
+
+  function pgUpdateHero() {
+    const photos = [curEvent.hero].concat(curEvent.photos);
+    const img = document.getElementById('pgHeroImg');
+    img.style.opacity='0';
+    setTimeout(function() {
+      img.src = photos[curPhoto];
+      img.style.opacity='1';
+    }, 180);
+    document.getElementById('pgCounter').textContent = (curPhoto+1) + ' / ' + photos.length;
+    document.querySelectorAll('.pg-thumb').forEach(function(t,i) {
+      t.classList.toggle('active', i===curPhoto);
+      t.style.borderColor = i===curPhoto ? curEvent.accent : 'rgba(255,255,255,.08)';
+    });
+  }
+
+  window.pgNavPhoto = function(dir) {
+    const total = 1 + curEvent.photos.length;
+    curPhoto = (curPhoto + dir + total) % total;
+    pgUpdateHero();
+  };
+
+  function pgBuildInfo() {
+    const e = curEvent;
+    document.getElementById('pgModalInfo').innerHTML = [
+      '<div class="pg-modal-header">',
+        '<span class="pg-modal-badge" style="color:' + e.accent + ';border-color:' + e.accent + '44">' + e.cat + '</span>',
+        '<button class="pg-modal-close" onclick="pgCloseModal()">×</button>',
+      '</div>',
+      '<p class="pg-modal-event" style="color:' + e.accent + '">' + e.event + '</p>',
+      '<h2 class="pg-modal-title">' + e.name + '</h2>',
+      '<p class="pg-modal-desc">' + e.desc + '</p>',
+      '<div class="pg-modal-divider" style="background:' + e.accent + '"></div>',
+      '<div class="pg-modal-metrics">',
+        e.metrics.map(function(m) {
+          return '<div class="pg-modal-metric" style="border-color:' + e.accent + '22"><div class="pg-modal-metric-val" style="color:' + e.accent + '">' + m.v + '</div><div class="pg-modal-metric-lbl">' + m.l + '</div></div>';
+        }).join(''),
+      '</div>',
+      '<a href="https://www.gamateltucafe.com" target="_blank" class="pg-modal-cta" style="background:' + e.accent + ';color:#1c100a">Comprar en Gamatelu Café →</a>',
+    ].join('');
+  }
+
+  function pgBuildThumbs() {
+    const photos = [curEvent.hero].concat(curEvent.photos);
+    const thumbs = document.getElementById('pgThumbs');
+    thumbs.innerHTML = photos.map(function(url, i) {
+      return '<div class="pg-thumb' + (i===0?' active':'') + '" onclick="pgGoPhoto(' + i + ')" style="border-color:' + (i===0?curEvent.accent:'rgba(255,255,255,.08)') + '"><img src="' + url + '" alt="" loading="lazy"/></div>';
+    }).join('');
+  }
+
+  window.pgGoPhoto = function(i) {
+    curPhoto = i;
+    pgUpdateHero();
+  };
+
+  window.pgCloseModal = function() {
+    document.getElementById('pgModal').classList.remove('open');
+    document.body.style.overflow='';
+  };
+
+  document.getElementById('pgModal').addEventListener('click', function(e) {
+    if(e.target === this) pgCloseModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if(!document.getElementById('pgModal').classList.contains('open')) return;
+    if(e.key==='Escape') pgCloseModal();
+    if(e.key==='ArrowRight') pgNavPhoto(1);
+    if(e.key==='ArrowLeft') pgNavPhoto(-1);
+  });
+
+  /* ── Intersection Observer for card entrance animations ── */
+  const io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if(e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; }
+    });
+  }, {threshold:0.1});
+
+  document.querySelectorAll('.pg-card').forEach(function(c) {
+    c.style.opacity='0';
+    c.style.transform='translateY(32px)';
+    io.observe(c);
+  });
+})();
+</script>
 
 <!-- SERVICES -->
 <section id="services">
