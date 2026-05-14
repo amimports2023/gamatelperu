@@ -142,12 +142,16 @@
       .feat-img{min-height:280px}
       .featured-wrap,.grid-wrap{padding:2rem 1.5rem 1rem}
       .products-grid{grid-template-columns:repeat(2,1fr)}
-      .filter-bar{padding:1rem 2rem}
+      .filter-bar{padding:.75rem 1.5rem;gap:.5rem;top:68px}
       footer{flex-direction:column;text-align:center;padding:2rem}
+      .cacao-grid{grid-template-columns:1fr!important;gap:2rem!important;padding:0}
+      .cacao-section{padding:2.5rem 1.5rem!important}
     }
     @media(max-width:560px){
-      .products-grid{grid-template-columns:repeat(2,1fr)}
-      .page-hero{padding:2rem}
+      .products-grid{grid-template-columns:1fr}
+      .page-hero{padding:1.5rem}
+      .filter-bar{top:68px}
+      .cacao-section{padding:2rem 1.2rem!important}
     }
   </style>
 </head>
@@ -356,9 +360,9 @@
 </div><!-- /bg section -->
 
 <!-- CACAO BANNER -->
-<section style="background:var(--moss);padding:4rem;position:relative;overflow:hidden">
+<section class="cacao-section" style="background:var(--moss);padding:4rem;position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 20px)"></div>
-  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1">
+  <div class="cacao-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1">
     <div>
       <div style="font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem">
         <span style="width:20px;height:1px;background:var(--gold);display:inline-block"></span>Línea Cacao
