@@ -1904,12 +1904,10 @@ RESUMEN_LISTO|nombre|empresa|motivo|descripcion|email`;
     botTyping();
 
     try {
-      var res = await fetch('https://api.anthropic.com/v1/messages',{
+      var res = await fetch('/.netlify/functions/chat',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({
-          model:'claude-sonnet-4-20250514',
-          max_tokens:300,
           system: SYSTEM,
           messages: state.history
         })
