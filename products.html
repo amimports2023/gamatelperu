@@ -91,6 +91,11 @@
     .feat-spec strong{color:var(--gold);min-width:80px;font-weight:500}
     .feat-tags{display:flex;gap:.5rem;flex-wrap:wrap}
     .feat-tag{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(212,168,67,.3);color:rgba(212,168,67,.8);padding:.28rem .75rem;border-radius:20px}
+    .brew-row{margin-top:1.1rem;padding-top:1rem;border-top:1px solid rgba(212,168,67,.12)}
+    .brew-label{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(212,168,67,.55);margin-bottom:.5rem;font-family:var(--font-sans)}
+    .brew-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+    .brew-chip{display:inline-flex;align-items:center;gap:.35rem;background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.22);border-radius:20px;padding:.32rem .8rem;font-size:.72rem;color:rgba(245,238,223,.85);white-space:nowrap}
+    .brew-chip .bc-icon{font-size:.9rem;line-height:1}
 
     /* ── PRODUCTS GRID ── */
     .grid-wrap{max-width:1280px;margin:0 auto;padding:1.5rem 3rem 4rem}
@@ -229,6 +234,7 @@
         <span class="feat-tag">Made in Perú</span>
         <span class="feat-tag">Specialty Coffee</span>
       </div>
+      <div class="brew-row" id="featBrew"></div>
       <a href="https://www.gamateltucafe.com" target="_blank"
          style="display:inline-block;margin-top:.8rem;padding:.75rem 1.8rem;background:var(--gold);color:var(--espresso);font-family:var(--font-sans);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border-radius:var(--r);transition:background .3s">
         Comprar en Gamatelu Café →
@@ -429,6 +435,7 @@ const PRODUCTS = {
     title:'Tu Café<br/>Achocolatado®',
     desc:'Nuestro café más emblemático. Granos 100% Arábica de Villa Rica, Pasco, a 1,550 m.s.n.m. con un perfil sensorial único: dulce, achocolatado, acidez brillante y cuerpo perfectamente balanceado. Tostado y molido artesanalmente en Chanchamayo, Junín.',
     specs:[['Origen','Villa Rica, Pasco · Perú'],['Altitud','1,550 m.s.n.m.'],['Variedad','Arábica (Blend)'],['Taza','83–84 pts (SCA)'],['Perfil','Dulce · Achocolatado · Acidez brillante'],['Contenido','250gr · Bolsa resellable']],
+    brew:[{icon:'☕',name:'Prensa Francesa'},{icon:'🤖',name:'Cafetera Eléctrica'},{icon:'🫗',name:'V60'}],
     tags:['100% Arábica','Made in Perú','Specialty Coffee','RUC 20612992194']
   },
   trad: {
@@ -436,6 +443,7 @@ const PRODUCTS = {
     title:'Tu Café<br/>Tradicional',
     desc:'Perfil suave y equilibrado con el carácter andino de Villa Rica. Aroma intenso y sabor que despierta cada sentido. Ideal para cafetera eléctrica, V60 o Chemex. Tostado artesanalmente.',
     specs:[['Origen','Villa Rica, Pasco · Perú'],['Altitud','1,550 m.s.n.m.'],['Variedad','Arábica (Blend)'],['Perfil','Suave · Equilibrado · Intenso'],['Molienda','Media Fina'],['Contenido','250gr · Bolsa resellable']],
+    brew:[{icon:'🤖',name:'Cafetera Eléctrica'},{icon:'⚗️',name:'Chemex'},{icon:'🫗',name:'V60'}],
     tags:['100% Arábica','Made in Perú','Tostado Artesanal']
   },
   prem: {
@@ -443,6 +451,7 @@ const PRODUCTS = {
     title:'Tu Café<br/>Premium Geisha',
     desc:'Nuestra línea de alto nivel. Variedad Geisha de Villa Rica a 1,800 m.s.n.m., proceso lavado, 90 pts SCA. Perfil floral con frutas tropicales, acidez cítrica, complejo y exótico.',
     specs:[['Origen','Villa Rica, Pasco · Perú'],['Altitud','1,800 m.s.n.m.'],['Variedad','Geisha'],['Proceso','Lavado'],['Taza','90 pts (SCA)'],['Contenido','250gr · Bolsa resellable']],
+    brew:[{icon:'🫗',name:'V60'},{icon:'⚗️',name:'Chemex'},{icon:'☕',name:'Prensa Francesa'}],
     tags:['Variedad Geisha','90 pts SCA','Proceso Lavado','Made in Perú']
   },
   colec: {
@@ -450,6 +459,7 @@ const PRODUCTS = {
     title:'Colección<br/>Gamatel',
     desc:'Los tres iconos de Gamatel en una sola colección: Achocolatado (blanco), Tradicional (verde) y Premium (dorado). Ideal para regalo, degustación y descubrir nuestros perfiles únicos.',
     specs:[['Contenido','3 x 250gr'],['Variedades','Achocolatado + Tradicional + Premium'],['Presentación','Set regalo premium'],['Origen','Villa Rica, Pasco · Perú']],
+    brew:[{icon:'☕',name:'Todos los métodos'},{icon:'🎁',name:'Ideal para regalo'}],
     tags:['Pack Regalo','3 Variedades','Made in Perú']
   },
   cacao: {
@@ -506,6 +516,17 @@ function selectProduct(card, key) {
       `<div class="feat-spec"><strong>${s[0]}</strong>${s[1]}</div>`).join('');
     document.getElementById('featTags').innerHTML = p.tags.map(t => 
       `<span class="feat-tag">${t}</span>`).join('');
+
+    // Brew methods row
+    var brewEl = document.getElementById('featBrew');
+    if(p.brew && p.brew.length){
+      brewEl.innerHTML = '<div class="brew-label">Mejor Preparación</div><div class="brew-chips">' +
+        p.brew.map(b => `<span class="brew-chip"><span class="bc-icon">${b.icon}</span>${b.name}</span>`).join('') +
+        '</div>';
+      brewEl.style.display = 'block';
+    } else {
+      brewEl.style.display = 'none';
+    }
     
     fc.style.transition = 'opacity .4s ease, transform .4s ease';
     fc.style.opacity = '1';
