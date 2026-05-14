@@ -415,11 +415,17 @@
     .pt-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
     /* INVESTOR WHISPER */
-    .investor-whisper{max-width:1200px;margin:0 auto;padding:0 5rem 5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,168,67,.08);padding-top:2.5rem;gap:2rem;margin-top:3rem}
-    .whisper-text{font-size:.8rem;font-weight:300;color:rgba(245,238,223,.42);line-height:1.7;max-width:500px}
-    .whisper-text strong{color:rgba(245,238,223,.6);font-weight:400}
-    .whisper-link{flex-shrink:0;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(212,168,67,.55);text-decoration:none;border:1px solid rgba(212,168,67,.18);padding:.6rem 1.2rem;white-space:nowrap;transition:color var(--t),border-color var(--t),background var(--t)}
-    .whisper-link:hover{color:var(--gold);border-color:var(--gold);background:rgba(212,168,67,.05)}
+    .investor-whisper{width:100%;margin-top:4rem;padding:4rem 5rem;background:linear-gradient(to bottom,#1c100a 0%,#283820 25%,#3b4d30 50%,#28391e 75%,#2e180e 100%);border-top:none;border-bottom:none;display:flex;align-items:center;justify-content:space-between;gap:3rem;position:relative;overflow:hidden}
+    .investor-whisper::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(106,168,80,.08) 0%,transparent 65%),radial-gradient(ellipse at 70% 50%,rgba(74,122,53,.06) 0%,transparent 65%);pointer-events:none}
+    .investor-whisper::after{content:'INVERSORES';position:absolute;right:4rem;top:50%;transform:translateY(-50%);font-size:7rem;font-weight:800;letter-spacing:.1em;color:rgba(106,168,80,.05);font-family:var(--font-serif);pointer-events:none;line-height:1}
+    .whisper-eyebrow{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:#8ec96e;margin-bottom:.8rem;display:flex;align-items:center;gap:8px}
+    .whisper-eyebrow::before{content:'';display:block;width:20px;height:1px;background:#8ec96e}
+    .whisper-text{font-size:1.05rem;font-weight:400;color:rgba(245,238,223,.88);line-height:1.75;max-width:560px;font-family:var(--font-serif)}
+    .whisper-text strong{color:#a8d98a;font-weight:600}
+    .whisper-actions{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;flex-shrink:0}
+    .whisper-link{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#1c100a;background:#6aac50;text-decoration:none;padding:.85rem 1.8rem;white-space:nowrap;transition:background var(--t),transform .2s;font-weight:700}
+    .whisper-link:hover{background:#82c464;transform:translateY(-2px)}
+    .whisper-sub{font-size:.68rem;color:rgba(245,238,223,.35);text-align:right;line-height:1.5}
 
     /* CONTACT */
     #contact{background:var(--roast)}
@@ -480,7 +486,10 @@
       .footer-inner{grid-template-columns:1fr 1fr}
       .footer-bottom{flex-direction:column;text-align:center}
       .f-row{grid-template-columns:1fr}
-      .investor-whisper{flex-direction:column;align-items:flex-start;padding:2rem}
+      .investor-whisper{flex-direction:column;align-items:flex-start;padding:2.5rem 1.5rem}
+      .investor-whisper::after{display:none}
+      .whisper-actions{align-items:flex-start}
+      .whisper-sub{text-align:left}
       #culture{padding:3rem 2rem}
     }
 
@@ -1527,10 +1536,16 @@
       </div>
     </div>
   </div>
-  <!-- SUBTLE INVESTOR WHISPER -->
+  <!-- INVESTOR DIVIDER BAND -->
   <div class="investor-whisper rev">
-    <p class="whisper-text">¿Interesado en explorar <strong>oportunidades de inversión</strong> en Gamatel Peru? Contamos con un dossier corporativo disponible para grupos inversores calificados y fondos con afinidad al sector agroalimentario peruano.</p>
-    <a href="investors.html" class="whisper-link">Información para Inversores →</a>
+    <div>
+      <div class="whisper-eyebrow">Oportunidad de Inversión</div>
+      <p class="whisper-text">¿Interesado en explorar <strong>oportunidades de inversión</strong> en Gamatel Peru? Contamos con un dossier corporativo disponible para grupos inversores calificados y fondos con afinidad al sector agroalimentario peruano.</p>
+    </div>
+    <div class="whisper-actions">
+      <a href="investors.html" class="whisper-link">Ver Dossier Corporativo →</a>
+      <span class="whisper-sub">Acceso por solicitud · NDA disponible</span>
+    </div>
   </div>
 </section>
 
