@@ -1,19 +1,25 @@
 // netlify/functions/chat.js
-// Proxies requests to Anthropic API — keeps API key secret on server side
-// Deploy to: /netlify/functions/chat.js in your GitHub repo root
-
 exports.handler = async function(event, context) {
-  // Only allow POST
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
 
-  // CORS headers — allow requests from your domain
   const headers = {
-    'Access-Control-Allow-Origin': 'https://gamatelperu.com',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Content-Type': 'application/json',
   };
+
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method Not Allowed' }) };
+  }
+
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return { statusCode: 500, headers, body: JSON.stringify({ error: 'API key not configured' }) };
+  }
 
   try {
     const body = JSON.parse(event.body);
@@ -22,11 +28,11 @@ exports.handler = async function(event, context) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY, // Set in Netlify dashboard
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 300,
         system: body.system,
         messages: body.messages,
@@ -37,7 +43,6 @@ exports.handler = async function(event, context) {
     return { statusCode: 200, headers, body: JSON.stringify(data) };
 
   } catch (err) {
-    console.error('Chat proxy error:', err);
     return {
       statusCode: 500,
       headers,
