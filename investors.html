@@ -68,6 +68,22 @@
     .access-gate{position:fixed;inset:0;z-index:500;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity .8s ease,visibility .8s ease}
     .access-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
     .gate-logo{font-family:var(--font-serif);font-size:3rem;font-weight:300;color:var(--cream);letter-spacing:.08em;text-align:center}
+    .gate-logo-img{
+      filter:
+        drop-shadow(0 0 18px rgba(212,168,67,.75))
+        drop-shadow(0 0 36px rgba(212,168,67,.40));
+      animation:logoGlow 3s ease-in-out infinite;
+      transition:filter .3s;
+    }
+    .gate-logo-img:hover{
+      filter:
+        drop-shadow(0 0 24px rgba(212,168,67,.95))
+        drop-shadow(0 0 48px rgba(212,168,67,.55));
+    }
+    @keyframes logoGlow{
+      0%,100%{filter:drop-shadow(0 0 18px rgba(212,168,67,.75)) drop-shadow(0 0 36px rgba(212,168,67,.40))}
+      50%{filter:drop-shadow(0 0 28px rgba(212,168,67,.95)) drop-shadow(0 0 56px rgba(212,168,67,.55))}
+    }
     .gate-logo span{color:var(--gold);font-style:italic}
     .gate-line{width:60px;height:1px;background:rgba(201,151,58,.4);margin:0 auto}
     .gate-label{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(242,232,214,.4);text-align:center}
@@ -256,6 +272,17 @@
       .tl-list::before{left:20px}
       .f-row{grid-template-columns:1fr}
     }
+    @media(max-width:480px){
+      nav,nav.stuck{padding:1rem 1.2rem}
+      .hero-inner{padding:5rem 1.2rem 3rem}
+      .s{padding:3rem 1.2rem}
+      .hero-title{font-size:clamp(1.8rem,8vw,2.8rem)}
+      .hero-body{font-size:.88rem}
+      .hero-meta{gap:1rem}
+      .opp-card,.why-card{padding:1.5rem}
+      .gate-inner{padding:2rem 1.2rem}
+      .footer-inner{padding:1.5rem 1.2rem}
+    }
   </style>
 </head>
 <body>
@@ -265,9 +292,8 @@
 <!-- ACCESS GATE -->
 <div class="access-gate" id="gate">
   <div class="gate-logo">
-    <img src="https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Logo_Registrado_Gamatel.png" alt="Gamatel Peru" width="140" height="140" loading="eager" style="filter:drop-shadow(0 0 16px rgba(201,151,58,.5))"/ decoding="async">
+    <img src="https://raw.githubusercontent.com/amimports2023/gamatelperu/main/images/Logo_Registrado_Gamatel.png" alt="Gamatel Peru" width="140" height="140" loading="eager" decoding="async" class="gate-logo-img">
     <br/>Gamatel <span>Peru</span>
-  </div><br/>Gamatel <span>Peru</span>
   </div>
   <div class="gate-line"></div>
   <div class="gate-label">Área Restringida · Inversores Calificados</div>
