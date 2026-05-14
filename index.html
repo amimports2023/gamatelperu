@@ -487,6 +487,7 @@
       .port-grid{grid-template-columns:repeat(2,1fr)}
       .footer-inner{grid-template-columns:1fr 1fr}
       .footer-bottom{flex-direction:column;text-align:center}
+      .f-col{min-width:0}
       .f-row{grid-template-columns:1fr}
       .investor-whisper{padding:2.5rem 0}
       .whisper-inner{flex-direction:column;align-items:flex-start;padding:0 1.5rem;gap:1.5rem}
@@ -498,12 +499,48 @@
     }
 
     /* ── WHATSAPP BUTTON ── */
-    .wa-btn{position:fixed;bottom:2rem;right:2rem;z-index:300;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;text-decoration:none;transition:transform .3s,box-shadow .3s;animation:waPulse 3s ease-in-out infinite}
-    .wa-btn:hover{transform:scale(1.12);box-shadow:0 8px 32px rgba(37,211,102,.6)}
-    .wa-btn svg{width:30px;height:30px;fill:white}
-    .wa-tooltip{position:absolute;right:70px;background:var(--espresso);color:var(--cream);padding:.5rem 1rem;border-radius:6px;font-size:.75rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s;border:1px solid rgba(212,168,67,.2)}
-    .wa-btn:hover .wa-tooltip{opacity:1}
+    /* ── AI Contact Bot ─────────────────────────── */
+    .bot-fab{position:fixed;bottom:2rem;right:2rem;z-index:300;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;border:none;transition:transform .3s,box-shadow .3s;animation:waPulse 3s ease-in-out infinite}
+    .bot-fab:hover{transform:scale(1.12);box-shadow:0 8px 32px rgba(37,211,102,.6)}
+    .bot-fab svg{width:30px;height:30px;fill:white}
+    .bot-fab .bot-badge{position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:#d4a843;border-radius:50%;border:2px solid #0e0a07;display:flex;align-items:center;justify-content:center}
+    .bot-fab .bot-badge svg{width:10px;height:10px;fill:#0e0a07}
     @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1)}}
+
+    .bot-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:400;width:360px;max-height:560px;background:#0e0a07;border:1px solid rgba(212,168,67,.2);border-radius:20px;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.6);transform:translateY(20px) scale(.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.16,1,.3,1);overflow:hidden}
+    .bot-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+    .bot-head{padding:16px 18px;background:linear-gradient(135deg,#1c100a,#2e180e);border-bottom:1px solid rgba(212,168,67,.15);display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .bot-avatar{width:38px;height:38px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+    .bot-head-info{flex:1}
+    .bot-head-name{font-size:.82rem;font-weight:600;color:var(--cream);letter-spacing:.02em}
+    .bot-head-status{font-size:.68rem;color:#25D366;display:flex;align-items:center;gap:4px}
+    .bot-head-status::before{content:'';width:6px;height:6px;background:#25D366;border-radius:50%;display:inline-block}
+    .bot-close{background:none;border:none;color:rgba(245,238,223,.4);font-size:1.1rem;cursor:pointer;padding:4px;transition:color .2s;line-height:1}
+    .bot-close:hover{color:var(--cream)}
+    .bot-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+    .bot-msgs::-webkit-scrollbar{width:3px}
+    .bot-msgs::-webkit-scrollbar-thumb{background:rgba(212,168,67,.2);border-radius:3px}
+    .bot-msg{max-width:85%;padding:10px 13px;border-radius:14px;font-size:.82rem;line-height:1.55;word-break:break-word}
+    .bot-msg.bot{background:rgba(255,255,255,.06);border:1px solid rgba(212,168,67,.1);color:rgba(245,238,223,.88);border-radius:4px 14px 14px 14px;align-self:flex-start}
+    .bot-msg.user{background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.25);color:rgba(245,238,223,.92);border-radius:14px 4px 14px 14px;align-self:flex-end}
+    .bot-msg.typing{display:flex;gap:4px;align-items:center;padding:12px 14px}
+    .bot-dot{width:6px;height:6px;background:#d4a843;border-radius:50%;opacity:.6;animation:botBounce 1.2s ease-in-out infinite}
+    .bot-dot:nth-child(2){animation-delay:.2s}
+    .bot-dot:nth-child(3){animation-delay:.4s}
+    @keyframes botBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+    .bot-chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px;flex-shrink:0}
+    .bot-chip{background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);color:rgba(245,238,223,.8);padding:6px 13px;border-radius:100px;font-size:.75rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .bot-chip:hover{background:rgba(212,168,67,.18);border-color:rgba(212,168,67,.5);color:var(--cream)}
+    .bot-input-row{display:flex;gap:8px;padding:12px 14px;border-top:1px solid rgba(212,168,67,.1);flex-shrink:0;background:rgba(255,255,255,.02)}
+    .bot-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(212,168,67,.2);border-radius:100px;padding:9px 14px;color:var(--cream);font-size:.8rem;font-family:var(--font-body);outline:none;transition:border-color .2s}
+    .bot-input:focus{border-color:rgba(212,168,67,.5)}
+    .bot-input::placeholder{color:rgba(245,238,223,.3)}
+    .bot-send{width:36px;height:36px;background:#d4a843;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;font-size:14px}
+    .bot-send:hover{background:#f5c842}
+    .bot-send:disabled{background:rgba(212,168,67,.3);cursor:default}
+    .bot-wa-btn{width:100%;padding:13px;background:#25D366;border:none;border-radius:12px;color:white;font-weight:700;font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s;margin-top:4px;font-family:var(--font-body);letter-spacing:.02em}
+    .bot-wa-btn:hover{background:#1da851}
+    @media(max-width:480px){.bot-panel{width:calc(100vw - 2rem);right:1rem;bottom:5rem}}
     /* ── BACK TO TOP ── */
     .top-btn{position:fixed;bottom:6.5rem;right:2rem;z-index:300;width:42px;height:42px;background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gold);font-size:1rem;opacity:0;transition:opacity .3s,background .3s,transform .3s;backdrop-filter:blur(8px)}
     .top-btn.visible{opacity:1}
@@ -1031,13 +1068,10 @@
 
 /* ── Mobile ── */
 @media(max-width:800px){
-  .pg-modal-top{display:grid;grid-template-columns:520px 1fr;min-height:620px;align-items:stretch;}
-  .pg-modal-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#050200 0%,#0d0604 100%);border-radius:24px 0 0 0;min-height:580px;}
-  .pg-modal-hero-img,.pg-modal-hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;background:#000;}
   .pg-modal-inner{max-width:100%;border-radius:18px}
   .pg-modal-info{padding:1.5rem}
   .pg-modal-title{font-size:1.25rem}
-  .pg-modal-logo{height:56px;max-width:130px;}
+  .pg-modal-logo{height:56px;max-width:130px}
 }
 @media(max-width:600px){
   .pg-card{width:250px;height:340px}
@@ -1048,9 +1082,40 @@
 }
 @media(max-width:380px){
   .pg-card{width:220px;height:310px}
-  .pg-modal-top{display:grid;grid-template-columns:520px 1fr;min-height:620px;align-items:stretch;}
 }
 
+@media(max-width:768px){
+  /* Gallery modal — stack vertically */
+  .pg-modal-inner{border-radius:16px;max-height:92vh;overflow-y:auto}
+  .pg-modal-top{grid-template-columns:1fr!important;min-height:unset!important}
+  .pg-modal-hero{min-height:280px!important;border-radius:16px 16px 0 0!important}
+  .pg-modal-info{padding:1.2rem 1rem 1.5rem}
+  .pg-modal-close{
+    position:fixed!important;
+    top:1rem;right:1rem;
+    z-index:9999;
+    width:44px!important;height:44px!important;
+    background:rgba(10,6,2,.9)!important;
+    border:1px solid rgba(212,168,67,.5)!important;
+    color:#d4a843!important;
+    font-size:1.3rem!important;
+    border-radius:50%!important;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.5)
+  }
+  .pg-thumbs{padding:0 1rem 1rem!important}
+  /* Footer — single column on mobile */
+  .footer-inner{grid-template-columns:1fr!important;padding:2.5rem 1.5rem!important;gap:2rem!important}
+  .footer-bottom{padding:1.5rem!important;flex-direction:column;text-align:center;gap:.75rem}
+  .f-brand-desc{max-width:100%!important}
+  .f-social{justify-content:flex-start}
+  .f-col ul{gap:.5rem}
+}
+@media(max-width:480px){
+  .pg-modal{padding:.5rem!important}
+  .pg-modal-hero{min-height:240px!important}
+  .pg-modal-close{top:.5rem!important;right:.5rem!important}
+}
 @keyframes pgFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes pgSlideUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 </style>
@@ -1694,14 +1759,219 @@
   });
   // Form handled by Netlify — no JS needed
 </script>
-<!-- ✅ WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/51955521968?text=Hola%20Gamatel%20Peru!%20Quisiera%20más%20información%20sobre%20sus%20productos." 
-   target="_blank" class="wa-btn" aria-label="Contactar por WhatsApp">
-  <div class="wa-tooltip">¡Escríbenos por WhatsApp!</div>
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-</a>
+<!-- ✅ AI CONTACT BOT — floating bottom right -->
+<button class="bot-fab" id="botFab" aria-label="Contactar con Gamatel" onclick="botToggle()">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="bot-badge"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></span>
+</button>
+
+<div class="bot-panel" id="botPanel">
+  <div class="bot-head">
+    <div class="bot-avatar">☕</div>
+    <div class="bot-head-info">
+      <div class="bot-head-name">Asistente Gamatel</div>
+      <div class="bot-head-status">En línea</div>
+    </div>
+    <button class="bot-close" onclick="botToggle()">✕</button>
+  </div>
+  <div class="bot-msgs" id="botMsgs"></div>
+  <div class="bot-chips" id="botChips"></div>
+  <div class="bot-input-row" id="botInputRow">
+    <input class="bot-input" id="botInput" placeholder="Escribe aquí..." onkeydown="if(event.key==='Enter')botSend()">
+    <button class="bot-send" id="botSendBtn" onclick="botSend()">↑</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ── CONFIG ───────────────────────────────────────────
+  // Replace with your real WhatsApp number when ready
+  var WA_NUMBER = '51955521968';
+
+  var SYSTEM = `Eres el asistente de contacto de Gamatel Peru S.A.C., empresa peruana de café specialty, cacao orgánico y Pisco con Crema de Café.
+
+Tu misión es FILTRAR y CALIFICAR contactos legítimos antes de conectarlos con el equipo.
+
+FLUJO ESTRICTO — sigue este orden exacto:
+1. Saluda brevemente y pregunta el NOMBRE
+2. Pregunta si representa una EMPRESA o es consumidor particular
+3. Pregunta el MOTIVO (usa chips: Pedido, Evento Corporativo, Distribución, Consulta General)
+4. Pide una breve DESCRIPCIÓN de su necesidad (mínimo 10 palabras)
+5. Pide su EMAIL de contacto
+6. Confirma el resumen y muestra botón de WhatsApp
+
+REGLAS DE FILTRADO:
+- Si el mensaje es incoherente, agresivo, o no tiene relación con café/cacao/eventos corporativos → responde amablemente que solo atiendes consultas relacionadas con Gamatel y pide reformular
+- Si no proporciona nombre real → pide nuevamente antes de continuar
+- Si el motivo no es claro tras 2 intentos → sugiere enviar email a contacto@gamatelperu.com
+- Nunca reveles el número de WhatsApp directamente
+- Sé cálido, profesional, brevísimo (máx 2 oraciones por respuesta)
+- Responde SIEMPRE en español
+
+Cuando tengas todos los datos (nombre, empresa/tipo, motivo, descripción, email) responde EXACTAMENTE así y nada más:
+RESUMEN_LISTO|nombre|empresa|motivo|descripcion|email`;
+
+  var state = { step: 0, data: {}, history: [], open: false, loading: false };
+
+  // ── TOGGLE ────────────────────────────────────────────
+  window.botToggle = function(){
+    state.open = !state.open;
+    document.getElementById('botPanel').classList.toggle('open', state.open);
+    if(state.open && state.step === 0) botStart();
+  };
+
+  function botStart(){
+    state.step = 1;
+    botAddMsg('bot', '¡Hola! Soy el asistente de Gamatel Peru 🌿☕\n\nEstoy aquí para conectarte con el equipo correcto. ¿Cuál es tu nombre?');
+  }
+
+  // ── MESSAGES ─────────────────────────────────────────
+  function botAddMsg(role, text, isWA){
+    var el = document.createElement('div');
+    el.className = 'bot-msg ' + role;
+    if(isWA){
+      el.innerHTML = text;
+    } else {
+      el.textContent = text;
+    }
+    document.getElementById('botMsgs').appendChild(el);
+    document.getElementById('botMsgs').scrollTop = 9999;
+    return el;
+  }
+
+  function botTyping(){
+    var el = document.createElement('div');
+    el.className = 'bot-msg bot typing';
+    el.id = 'botTyping';
+    el.innerHTML = '<span class="bot-dot"></span><span class="bot-dot"></span><span class="bot-dot"></span>';
+    document.getElementById('botMsgs').appendChild(el);
+    document.getElementById('botMsgs').scrollTop = 9999;
+  }
+
+  function botRemoveTyping(){
+    var t = document.getElementById('botTyping');
+    if(t) t.remove();
+  }
+
+  function setChips(chips){
+    var c = document.getElementById('botChips');
+    c.innerHTML = '';
+    chips.forEach(function(chip){
+      var b = document.createElement('button');
+      b.className = 'bot-chip';
+      b.textContent = chip;
+      b.onclick = function(){ botUserMsg(chip); };
+      c.appendChild(b);
+    });
+  }
+
+  function clearChips(){ document.getElementById('botChips').innerHTML = ''; }
+
+  // ── SEND ─────────────────────────────────────────────
+  window.botSend = function(){
+    var inp = document.getElementById('botInput');
+    var txt = inp.value.trim();
+    if(!txt || state.loading) return;
+    inp.value = '';
+    botUserMsg(txt);
+  };
+
+  function botUserMsg(txt){
+    clearChips();
+    botAddMsg('user', txt);
+    state.history.push({ role:'user', content: txt });
+    botAsk();
+  }
+
+  async function botAsk(){
+    state.loading = true;
+    document.getElementById('botSendBtn').disabled = true;
+    botTyping();
+
+    try {
+      var res = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:300,
+          system: SYSTEM,
+          messages: state.history
+        })
+      });
+      var data = await res.json();
+      var reply = data.content && data.content[0] ? data.content[0].text : '❌ Error. Intenta de nuevo.';
+
+      botRemoveTyping();
+      state.history.push({ role:'assistant', content: reply });
+
+      // Check if AI signals it has all data
+      if(reply.startsWith('RESUMEN_LISTO|')){
+        var parts = reply.split('|');
+        state.data = {
+          nombre: parts[1] || '',
+          empresa: parts[2] || '',
+          motivo: parts[3] || '',
+          descripcion: parts[4] || '',
+          email: parts[5] || ''
+        };
+        showSummary();
+      } else {
+        botAddMsg('bot', reply);
+        // Show chips for step 3 (motivo)
+        if(reply.toLowerCase().includes('motivo') || reply.toLowerCase().includes('razón') || reply.toLowerCase().includes('cómo puedo')){
+          setChips(['Pedido de Café', 'Evento Corporativo', 'Distribución', 'Consulta General']);
+        }
+      }
+    } catch(e) {
+      botRemoveTyping();
+      botAddMsg('bot', '❌ Error de conexión. Por favor recarga la página.');
+    }
+
+    state.loading = false;
+    document.getElementById('botSendBtn').disabled = false;
+  }
+
+  // ── SUMMARY + WA BUTTON ───────────────────────────────
+  function showSummary(){
+    var d = state.data;
+    var summary = '✅ ¡Perfecto! Esto es lo que enviaremos al equipo:\n\n' +
+      '👤 ' + d.nombre + '\n' +
+      '🏢 ' + d.empresa + '\n' +
+      '📋 ' + d.motivo + '\n' +
+      '💬 ' + d.descripcion + '\n' +
+      '📧 ' + d.email;
+
+    botAddMsg('bot', summary);
+
+    // Build WhatsApp message
+    var waMsg = '🟢 NUEVO CONTACTO — Gamatel Peru\n' +
+      '──────────────────────\n' +
+      '👤 Nombre: ' + d.nombre + '\n' +
+      '🏢 Empresa: ' + d.empresa + '\n' +
+      '📋 Motivo: ' + d.motivo + '\n' +
+      '💬 Mensaje: ' + d.descripcion + '\n' +
+      '📧 Email: ' + d.email + '\n' +
+      '──────────────────────\n' +
+      '📌 Contacto recibido desde gamatelperu.com';
+
+    var waURL = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(waMsg);
+
+    // Show WA button as a message
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'padding:0 4px;width:100%';
+    wrap.innerHTML = '<button class="bot-wa-btn" onclick="window.open(\'' + waURL + '\',\'_blank\')">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>' +
+      'Enviar consulta por WhatsApp</button>';
+    document.getElementById('botMsgs').appendChild(wrap);
+    document.getElementById('botMsgs').scrollTop = 9999;
+
+    // Hide input
+    document.getElementById('botInputRow').style.display = 'none';
+  }
+
+})();
+</script>
 
 <!-- ✅ BACK TO TOP -->
 <button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
