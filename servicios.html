@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Servicios Corporativos de Gamatel Peru — Abastecimiento institucional, ferias internacionales, gifting corporativo, exportación y catas de café y cacao premium.">
+<title>Servicios — Gamatel Peru S.A.C.</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Gamatel Peru S.A.C.",
+  "url":"https://www.gamatelperu.com",
+  "logo":"https://res.cloudinary.com/dgsugletk/image/upload/w_200,c_fit,f_auto/base_image_gamatel_logo_x1h0fr.png",
+  "contactType":"customer service",
+  "areaServed":["PE","US","EU"]
+}
+</script>
+
+<style>
+  /* ── DESIGN TOKENS ─────────────────────────── */
+  :root {
+    --black:      #0e0a07;
+    --espresso:   #1c100a;
+    --roast:      #2e180e;
+    --bark:       #4d2b18;
+    --terracotta: #a0471f;
+    --amber:      #c08530;
+    --gold:       #d4a843;
+    --sand:       #e8d5b0;
+    --cream:      #f5eedf;
+    --sage:       #5c6e50;
+    --moss:       #3b4d30;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans:  'Jost', sans-serif;
+    --t:          0.4s cubic-bezier(.25,.46,.45,.94);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--espresso);color:var(--cream);font-family:var(--font-sans);overflow-x:hidden;cursor:none}
+  body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.035'/%3E%3C/svg%3E");opacity:.5}
+
+  /* CURSOR */
+  #cur,#cur-ring{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  #cur{width:8px;height:8px;background:var(--gold);transition:width .25s,height .25s,background .25s}
+  #cur-ring{width:32px;height:32px;border:1px solid rgba(212,168,67,.45);transition:width .3s,height .3s}
+  body.ch #cur{width:18px;height:18px;background:var(--cream)}
+  body.ch #cur-ring{width:52px;height:52px}
+
+  /* NAV */
+  nav{position:fixed;top:0;inset-inline:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 5rem;transition:background var(--t),padding var(--t),border-color var(--t);border-bottom:1px solid transparent}
+  nav.stuck{background:rgba(14,10,7,.94);backdrop-filter:blur(14px);padding:1rem 5rem;border-bottom-color:rgba(212,168,67,.12)}
+  .logo{display:flex;align-items:center;gap:.9rem;text-decoration:none}
+  .logo-img{width:90px;height:90px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 14px rgba(201,151,58,.85)) drop-shadow(0 0 28px rgba(180,100,20,.55)) brightness(1.3) contrast(1.1) saturate(1.25);animation:navLogoGlow 3.5s ease-in-out infinite;transition:filter .35s}
+  .logo-img:hover{filter:drop-shadow(0 0 30px rgba(212,168,67,1)) drop-shadow(0 0 60px rgba(212,168,67,.7)) brightness(1.45) contrast(1.15) saturate(1.35)}
+  @keyframes navLogoGlow{
+    0%,100%{filter:drop-shadow(0 0 14px rgba(201,151,58,.85)) drop-shadow(0 0 28px rgba(180,100,20,.55)) brightness(1.3) contrast(1.1) saturate(1.25)}
+    50%{filter:drop-shadow(0 0 24px rgba(212,168,67,.98)) drop-shadow(0 0 48px rgba(212,168,67,.65)) brightness(1.4) contrast(1.12) saturate(1.3)}}
+  .logo-text{display:flex;flex-direction:column;gap:1px}
+  .logo-name{font-family:var(--font-serif);font-size:1.45rem;font-weight:700;letter-spacing:.04em;color:#fff;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+  .logo-tagline{font-size:.62rem;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:#fff;opacity:.9}
+  .logo-mr{font-size:.54rem;font-weight:400;letter-spacing:.12em;color:rgba(255,255,255,.7)}
+  .nav-links{display:flex;align-items:center;gap:2.4rem;list-style:none}
+  .nav-links a{font-size:.68rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,238,223,.7);text-decoration:none;position:relative;transition:color var(--t)}
+  .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform var(--t)}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-links a.active{color:var(--gold)}
+  .nav-links a.active::after{transform:scaleX(1)}
+  .nav-btn{padding:.55rem 1.4rem!important;border:1px solid rgba(212,168,67,.5)!important;color:var(--gold)!important;transition:background var(--t),color var(--t)!important}
+  .nav-btn:hover{background:var(--gold)!important;color:var(--espresso)!important}
+  .nav-btn::after{display:none!important}
+  .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .ham span{width:22px;height:1.5px;background:var(--cream);display:block;transition:.3s}
+  .mob{display:none;position:fixed;inset:0;z-index:250;background:var(--black);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+  .mob.open{display:flex}
+  .mob a{font-family:var(--font-serif);font-size:2rem;color:var(--cream);text-decoration:none;transition:color .3s}
+  .mob a:hover{color:var(--gold)}
+  .mob-close{position:absolute;top:2rem;right:2rem;background:none;border:none;color:var(--cream);font-size:1.5rem;cursor:pointer}
+
+  /* SCROLL REVEAL */
+  .rev{opacity:0;transform:translateY(36px);transition:opacity .85s var(--t),transform .85s var(--t)}
+  .rev.in{opacity:1;transform:translateY(0)}
+  .rev-l{opacity:0;transform:translateX(-36px);transition:opacity .85s var(--t),transform .85s var(--t)}
+  .rev-l.in{opacity:1;transform:translateX(0)}
+  .rev-r{opacity:0;transform:translateX(36px);transition:opacity .85s var(--t),transform .85s var(--t)}
+  .rev-r.in{opacity:1;transform:translateX(0)}
+  .delay-1{transition-delay:.15s}
+  .delay-2{transition-delay:.3s}
+  .delay-3{transition-delay:.45s}
+  .delay-4{transition-delay:.6s}
+  .delay-5{transition-delay:.75s}
+
+  /* BUTTONS */
+  .btn-gold{display:inline-block;padding:.85rem 2rem;background:var(--gold);color:var(--espresso);font-family:var(--font-sans);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background var(--t),transform .2s,box-shadow .3s}
+  .btn-gold:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 10px 36px rgba(212,168,67,.28)}
+  .btn-ghost{display:inline-block;padding:.85rem 2rem;background:transparent;color:var(--cream);font-family:var(--font-sans);font-size:.68rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(245,238,223,.25);cursor:pointer;transition:border-color var(--t),background var(--t),transform .2s}
+  .btn-ghost:hover{border-color:var(--gold);background:rgba(212,168,67,.07);transform:translateY(-2px)}
+
+  /* SECTION INNER */
+  .s-inner{max-width:1280px;margin:0 auto;padding:0 5rem}
+  .s-label{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+
+  /* ── HERO ──────────────────────────────────── */
+  #hero{min-height:90vh;position:relative;display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,10,7,.92) 0%,rgba(28,16,10,.72) 55%,rgba(14,10,7,.88) 100%),url("https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_1920,c_fill,g_auto/Gamatel_Luxury_Meetings_Coffe_With_Pisco_bww6m8") center/cover no-repeat}
+  .hero-accent{position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(130px);pointer-events:none;background:rgba(160,71,31,.12);top:-150px;right:-100px;animation:glow 14s ease-in-out infinite alternate}
+  @keyframes glow{from{transform:scale(1)}to{transform:scale(1.18) translate(-20px,30px)}}
+  .hero-inner{position:relative;z-index:2;padding:10rem 5rem 6rem;max-width:1280px;margin:0 auto;width:100%}
+  .hero-breadcrumb{display:flex;align-items:center;gap:.8rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,238,223,.45);margin-bottom:2.5rem}
+  .hero-breadcrumb a{color:rgba(245,238,223,.45);text-decoration:none;transition:color var(--t)}
+  .hero-breadcrumb a:hover{color:var(--gold)}
+  .hero-breadcrumb span{color:rgba(245,238,223,.25)}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.8rem;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s ease .2s forwards}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}from{opacity:0;transform:translateY(20px)}}
+  .hero-h1{font-family:var(--font-serif);font-size:clamp(2.8rem,5vw,5rem);font-weight:400;line-height:1.06;color:var(--cream);max-width:700px;opacity:0;animation:fadeUp .9s ease .4s forwards}
+  .hero-h1 em{font-style:italic;color:var(--gold)}
+  .hero-desc{font-size:.95rem;font-weight:300;color:rgba(245,238,223,.65);line-height:1.85;max-width:560px;margin-top:2rem;opacity:0;animation:fadeUp .9s ease .6s forwards}
+  .hero-actions{display:flex;gap:1.2rem;margin-top:3rem;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease .8s forwards}
+  .hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(245,238,223,.08);opacity:0;animation:fadeUp .9s ease 1s forwards}
+  .h-stat .num{font-family:var(--font-serif);font-size:2.2rem;font-weight:600;color:var(--gold);line-height:1}
+  .h-stat .lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,238,223,.45);margin-top:.3rem}
+
+  /* SERVICE CARDS OVERVIEW */
+  #overview{padding:6rem 0;background:linear-gradient(180deg,var(--black) 0%,var(--espresso) 100%)}
+  .ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(245,238,223,.06);border:1px solid rgba(245,238,223,.06)}
+  .ov-card{background:var(--espresso);padding:2.4rem 2rem;display:flex;flex-direction:column;gap:1rem;cursor:pointer;transition:background var(--t)}
+  .ov-card:hover{background:rgba(212,168,67,.06)}
+  .ov-num{font-family:var(--font-serif);font-size:3rem;font-weight:400;color:rgba(212,168,67,.18);line-height:1}
+  .ov-icon{font-size:2rem;margin-bottom:.4rem}
+  .ov-title{font-family:var(--font-serif);font-size:1.05rem;font-weight:600;color:var(--cream);line-height:1.3}
+  .ov-desc{font-size:.78rem;font-weight:300;color:rgba(245,238,223,.5);line-height:1.7}
+  .ov-link{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;margin-top:auto}
+  .ov-link::after{content:' →'}
+
+  /* SERVICE SECTIONS */
+  .srv-section{padding:8rem 0;position:relative}
+  .srv-section:nth-child(odd){background:var(--espresso)}
+  .srv-section:nth-child(even){background:linear-gradient(180deg,var(--roast) 0%,var(--espresso) 100%)}
+  .srv-layout{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+  .srv-layout.reverse{direction:rtl}
+  .srv-layout.reverse > *{direction:ltr}
+  .srv-eyebrow{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+  .srv-number{font-family:var(--font-serif);font-size:6rem;font-weight:400;color:rgba(212,168,67,.1);line-height:1;margin-bottom:-1.5rem;display:block}
+  .srv-h2{font-family:var(--font-serif);font-size:clamp(2rem,3vw,2.8rem);font-weight:400;color:var(--cream);line-height:1.15;margin-bottom:1.5rem}
+  .srv-h2 em{font-style:italic;color:var(--gold)}
+  .srv-body{font-size:.9rem;font-weight:300;color:rgba(245,238,223,.65);line-height:1.9;margin-bottom:2rem}
+  .srv-bullets{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:2.5rem}
+  .srv-bullets li{display:flex;align-items:flex-start;gap:1rem;font-size:.82rem;font-weight:300;color:rgba(245,238,223,.7);line-height:1.6}
+  .srv-bullets li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.55rem}
+  .srv-img-wrap{position:relative;overflow:hidden}
+  .srv-img-wrap::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(212,168,67,.08) 0%,transparent 60%)}
+  .srv-img{width:100%;height:520px;object-fit:cover;display:block;transition:transform 1s var(--t)}
+  .srv-img-wrap:hover .srv-img{transform:scale(1.04)}
+  .srv-img-tag{position:absolute;bottom:2rem;left:2rem;z-index:2;background:rgba(14,10,7,.82);backdrop-filter:blur(12px);border:1px solid rgba(212,168,67,.2);padding:.7rem 1.2rem}
+  .srv-img-tag .tag-label{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.2rem}
+  .srv-img-tag .tag-val{font-family:var(--font-serif);font-size:.95rem;color:var(--cream)}
+
+  /* PROCESS / HOW WE WORK */
+  #process{padding:8rem 0;background:var(--black)}
+  .proc-header{text-align:center;margin-bottom:5rem}
+  .proc-h2{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--cream)}
+  .proc-h2 em{font-style:italic;color:var(--gold)}
+  .proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+  .proc-steps::before{content:'';position:absolute;top:2.4rem;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .proc-step{padding:3rem 2rem 2.5rem;text-align:center;position:relative}
+  .proc-step-num{width:48px;height:48px;border-radius:50%;border:1px solid rgba(212,168,67,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--font-serif);font-size:1.2rem;color:var(--gold);background:var(--black);position:relative;z-index:1}
+  .proc-step-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:600;color:var(--cream);margin-bottom:.8rem}
+  .proc-step-desc{font-size:.8rem;font-weight:300;color:rgba(245,238,223,.5);line-height:1.75}
+
+  /* PARTNERS BAND */
+  #partners-cta{padding:6rem 0;background:var(--roast);position:relative;overflow:hidden}
+  #partners-cta::before{content:'';position:absolute;inset:0;background:url("https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_1400,c_fill,g_auto/Gamatel_Luxury_Meetings_Coffe_With_Pisco_ww5cru") center/cover;opacity:.08}
+  .pc-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4rem}
+  .pc-title{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--cream);margin-bottom:1rem}
+  .pc-title em{font-style:italic;color:var(--gold)}
+  .pc-desc{font-size:.88rem;font-weight:300;color:rgba(245,238,223,.6);line-height:1.85;max-width:560px}
+  .pc-actions{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
+
+  /* FAQ */
+  #faq{padding:7rem 0;background:var(--espresso)}
+  .faq-header{margin-bottom:4rem}
+  .faq-h2{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:400;color:var(--cream)}
+  .faq-h2 em{font-style:italic;color:var(--gold)}
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(245,238,223,.06)}
+  .faq-item{background:var(--espresso);padding:2rem 2.4rem;cursor:pointer}
+  .faq-item:hover{background:rgba(212,168,67,.04)}
+  .faq-q{font-family:var(--font-serif);font-size:1.05rem;color:var(--cream);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  .faq-icon{color:var(--gold);font-size:1.2rem;flex-shrink:0;transition:transform .35s}
+  .faq-item.open .faq-icon{transform:rotate(45deg)}
+  .faq-a{font-size:.82rem;font-weight:300;color:rgba(245,238,223,.6);line-height:1.8;margin-top:1.2rem;display:none}
+  .faq-item.open .faq-a{display:block}
+
+  /* FOOTER */
+  footer{background:var(--black);padding:6rem 0 0;border-top:1px solid rgba(245,238,223,.06)}
+  .f-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:4rem;padding-bottom:5rem}
+  .f-brand-name{font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--cream);margin-top:1rem}
+  .f-brand-sub{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,238,223,.35);margin-top:.3rem}
+  .f-brand-desc{font-size:.8rem;font-weight:300;color:rgba(245,238,223,.4);line-height:1.8;margin-top:1.2rem;max-width:280px}
+  .f-social{display:flex;gap:.8rem;margin-top:1.6rem}
+  .f-social a{width:36px;height:36px;border:1px solid rgba(245,238,223,.12);display:flex;align-items:center;justify-content:center;transition:border-color var(--t),background var(--t)}
+  .f-social a:hover{border-color:var(--gold);background:rgba(212,168,67,.08)}
+  .f-social svg{width:14px;height:14px;fill:rgba(245,238,223,.55);flex-shrink:0;transition:fill var(--t)}
+  .f-social a:hover svg{fill:var(--gold)}
+  .f-col h4{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+  .f-col ul{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+  .f-col ul li a{font-size:.8rem;font-weight:300;color:rgba(245,238,223,.45);text-decoration:none;transition:color var(--t)}
+  .f-col ul li a:hover{color:var(--cream)}
+  .footer-logo-img{width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(212,168,67,.5)) brightness(1.15)}
+  .footer-bottom{border-top:1px solid rgba(245,238,223,.06);padding:1.8rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;font-size:.72rem;font-weight:300;color:rgba(245,238,223,.3)}
+  .footer-bottom a{color:rgba(245,238,223,.35);text-decoration:none;transition:color var(--t)}
+  .footer-bottom a:hover{color:var(--gold)}
+  .mr-badge{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(212,168,67,.4)}
+
+  /* BACK TO TOP */
+  #topBtn{position:fixed;bottom:2rem;left:2rem;width:40px;height:40px;border:1px solid rgba(212,168,67,.3);background:rgba(14,10,7,.8);color:var(--gold);font-size:1rem;cursor:pointer;z-index:100;opacity:0;pointer-events:none;transition:opacity var(--t),border-color var(--t);display:flex;align-items:center;justify-content:center}
+  #topBtn.visible{opacity:1;pointer-events:all}
+  #topBtn:hover{border-color:var(--gold);background:rgba(212,168,67,.1)}
+
+  /* RESPONSIVE */
+  @media(max-width:1100px){
+    nav{padding:1.4rem 3rem}
+    nav.stuck{padding:1rem 3rem}
+    .s-inner{padding:0 3rem}
+    .hero-inner{padding:8rem 3rem 5rem}
+    .ov-grid{grid-template-columns:repeat(3,1fr)}
+    .srv-layout{gap:4rem}
+    .proc-steps{grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(245,238,223,.06)}
+    .proc-steps::before{display:none}
+    .proc-step{background:var(--black)}
+    .pc-inner{grid-template-columns:1fr}
+    .pc-actions{align-items:flex-start;flex-direction:row}
+    .f-grid{grid-template-columns:1fr 1fr;gap:3rem}
+  }
+  @media(max-width:768px){
+    .nav-links,.ham+.nav-links{display:none}
+    .ham{display:flex}
+    nav{padding:1.2rem 1.8rem}
+    nav.stuck{padding:.9rem 1.8rem}
+    .s-inner{padding:0 1.8rem}
+    .hero-inner{padding:7rem 1.8rem 4rem}
+    .hero-stats{gap:2rem}
+    .ov-grid{grid-template-columns:1fr 1fr}
+    .srv-section{padding:5rem 0}
+    .srv-layout,.srv-layout.reverse{grid-template-columns:1fr;direction:ltr;gap:3rem}
+    .srv-layout.reverse .srv-text-col{order:2}
+    .srv-layout.reverse .srv-img-wrap{order:1}
+    .srv-img{height:320px}
+    .faq-grid{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr;gap:2.5rem}
+    .footer-bottom{flex-direction:column;text-align:center}
+    #process{padding:5rem 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">
+    <img src="https://res.cloudinary.com/dgsugletk/image/upload/w_200,c_fit,f_auto/base_image_gamatel_logo_x1h0fr.png" alt="Gamatel Peru S.A.C." class="logo-img" loading="eager" decoding="async">
+    <div class="logo-text">
+      <span class="logo-name">Gamatel Peru</span>
+      <span class="logo-tagline">Lima, Perú</span>
+      <span class="logo-mr">® Marca Registrada</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Nosotros</a></li>
+    <li><a href="index.html#products">Productos</a></li>
+    <li><a href="servicios.html" class="active">Servicios</a></li>
+    <li><a href="index.html#partners">Alianzas</a></li>
+    <li><a href="https://www.gamateltucafe.com" target="_blank">Marketplace</a></li>
+    <li><a href="index.html#contact" class="nav-btn">Contacto</a></li>
+  </ul>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="index.html#about" onclick="closeMob()">Nosotros</a>
+  <a href="index.html#products" onclick="closeMob()">Productos</a>
+  <a href="servicios.html" onclick="closeMob()">Servicios</a>
+  <a href="index.html#partners" onclick="closeMob()">Alianzas</a>
+  <a href="https://www.gamateltucafe.com" target="_blank" onclick="closeMob()">Marketplace ↗</a>
+  <a href="index.html#contact" onclick="closeMob()">Contacto</a>
+</div>
+
+<!-- ═══════ HERO ════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-inner">
+    <nav class="hero-breadcrumb" aria-label="breadcrumb">
+      <a href="index.html">Inicio</a>
+      <span>/</span>
+      <span style="color:var(--gold)">Servicios</span>
+    </nav>
+    <div class="hero-eyebrow">
+      <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span>
+      Soluciones Corporativas · Lima, Perú
+    </div>
+    <h1 class="hero-h1">Servicios que conectan<br>el Perú con el <em>mundo</em></h1>
+    <p class="hero-desc">Desde abastecimiento institucional hasta exportaciones internacionales — ofrecemos soluciones especializadas en café, cacao y bebidas premium para empresas, hoteles, ferias y eventos de alto nivel.</p>
+    <div class="hero-actions">
+      <a href="index.html#contact" class="btn-gold">Solicitar Propuesta</a>
+      <a href="#overview" class="btn-ghost">Ver Servicios ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat rev">
+        <div class="num">5+</div>
+        <div class="lbl">Líneas de Servicio</div>
+      </div>
+      <div class="h-stat rev delay-1">
+        <div class="num">B2B</div>
+        <div class="lbl">Enfoque Corporativo</div>
+      </div>
+      <div class="h-stat rev delay-2">
+        <div class="num">3</div>
+        <div class="lbl">Continentes</div>
+      </div>
+      <div class="h-stat rev delay-3">
+        <div class="num">+10</div>
+        <div class="lbl">Socios Actuales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ OVERVIEW CARDS ═══════════════════════════ -->
+<section id="overview">
+  <div class="s-inner">
+    <div class="s-label rev" style="text-align:center;margin-bottom:3rem">Todo lo que ofrecemos</div>
+    <div class="ov-grid">
+      <a href="#ferias" class="ov-card rev" style="text-decoration:none">
+        <div class="ov-num">01</div>
+        <div class="ov-icon">🎪</div>
+        <div class="ov-title">Ferias y Exposiciones</div>
+        <div class="ov-desc">Presencia en Mistura, Expoalimentaria, FIL Lima y eventos del sector gastronómico internacional.</div>
+        <span class="ov-link">Ver detalle</span>
+      </a>
+      <a href="#institucional" class="ov-card rev delay-1" style="text-decoration:none">
+        <div class="ov-num">02</div>
+        <div class="ov-icon">🏛️</div>
+        <div class="ov-title">Abastecimiento Institucional</div>
+        <div class="ov-desc">Contratos a medida para universidades, hoteles, restaurantes, aeropuertos y entidades públicas.</div>
+        <span class="ov-link">Ver detalle</span>
+      </a>
+      <a href="#gifting" class="ov-card rev delay-2" style="text-decoration:none">
+        <div class="ov-num">03</div>
+        <div class="ov-icon">🎁</div>
+        <div class="ov-title">Gifting Corporativo</div>
+        <div class="ov-desc">Kits de degustación y canastas gourmet personalizadas con la marca del cliente.</div>
+        <span class="ov-link">Ver detalle</span>
+      </a>
+      <a href="#exportacion" class="ov-card rev delay-3" style="text-decoration:none">
+        <div class="ov-num">04</div>
+        <div class="ov-icon">🌍</div>
+        <div class="ov-title">Exportación Internacional</div>
+        <div class="ov-desc">Gestión logística completa para mercados de América del Norte, Europa y Asia.</div>
+        <span class="ov-link">Ver detalle</span>
+      </a>
+      <a href="#catas" class="ov-card rev delay-4" style="text-decoration:none">
+        <div class="ov-num">05</div>
+        <div class="ov-icon">☕</div>
+        <div class="ov-title">Catas y Experiencias</div>
+        <div class="ov-desc">Catas, talleres de barismo y experiencias sensoriales para empresas y embajadas.</div>
+        <span class="ov-link">Ver detalle</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ S1: FERIAS ════════════════════════════════ -->
+<section class="srv-section" id="ferias">
+  <div class="s-inner">
+    <div class="srv-layout">
+      <div class="srv-img-wrap rev-l">
+        <img src="https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_900,c_fill,g_auto/Chanchamayo_Caffe_Cultive_1_coyvxa" alt="Gamatel en Ferias y Exposiciones" class="srv-img" loading="lazy">
+        <div class="srv-img-tag">
+          <span class="tag-label">Presencia Nacional e Internacional</span>
+          <span class="tag-val">Ferias Gastronómicas</span>
+        </div>
+      </div>
+      <div class="srv-text-col rev-r">
+        <div class="srv-eyebrow">Servicio 01</div>
+        <span class="srv-number">01</span>
+        <h2 class="srv-h2">Ferias y <em>Exposiciones</em></h2>
+        <p class="srv-body">Llevamos la esencia del café peruano a los escenarios más importantes del sector gastronómico. Nuestra presencia en ferias nacionales e internacionales posiciona a Gamatel como referente del café specialty de origen.</p>
+        <ul class="srv-bullets">
+          <li>Participación en Mistura, Expoalimentaria y FIL Lima</li>
+          <li>Degustaciones en vivo con baristas especializados</li>
+          <li>Material de stand, branding y presentación premium</li>
+          <li>Representación de marca en ferias internacionales bajo acuerdo</li>
+          <li>Documentación técnica y certificaciones disponibles para importadores</li>
+        </ul>
+        <a href="index.html#contact" class="btn-gold">Consultar disponibilidad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ S2: INSTITUCIONAL ════════════════════════ -->
+<section class="srv-section" id="institucional">
+  <div class="s-inner">
+    <div class="srv-layout reverse">
+      <div class="srv-text-col rev-l">
+        <div class="srv-eyebrow">Servicio 02</div>
+        <span class="srv-number">02</span>
+        <h2 class="srv-h2">Abastecimiento <em>Institucional</em></h2>
+        <p class="srv-body">Proveemos café, cacao y bebidas premium a instituciones con alto volumen de consumo bajo contratos diseñados a la medida de cada organización. Nuestra cadena de suministro garantiza calidad constante y entrega puntual.</p>
+        <ul class="srv-bullets">
+          <li>Contratos de suministro mensual, trimestral o anual</li>
+          <li>Modalidades: molido, en grano, cápsulas y bebidas listas</li>
+          <li>Hoteles, resorts, restaurantes y cadenas de cafeterías</li>
+          <li>Universidades, aeropuertos, clínicas y entidades públicas</li>
+          <li>Soporte de capacitación para el personal de la institución</li>
+        </ul>
+        <a href="index.html#contact" class="btn-gold">Solicitar cotización</a>
+      </div>
+      <div class="srv-img-wrap rev-r">
+        <img src="https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_900,c_fill,g_auto/Gamatel_Luxury_Meetings_Coffe_With_Pisco_ww5cru" alt="Abastecimiento Institucional Gamatel" class="srv-img" loading="lazy">
+        <div class="srv-img-tag">
+          <span class="tag-label">Socios Actuales</span>
+          <span class="tag-val">MiBanco · USMP · San Fernando</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ S3: GIFTING ══════════════════════════════ -->
+<section class="srv-section" id="gifting">
+  <div class="s-inner">
+    <div class="srv-layout">
+      <div class="srv-img-wrap rev-l">
+        <img src="https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_900,c_fill,g_auto/Gamatel_Empresa_Portafolio_Products_a3gwge" alt="Gifting Corporativo Gamatel" class="srv-img" loading="lazy">
+        <div class="srv-img-tag">
+          <span class="tag-label">Personalización total</span>
+          <span class="tag-val">Kits Gourmet a tu Marca</span>
+        </div>
+      </div>
+      <div class="srv-text-col rev-r">
+        <div class="srv-eyebrow">Servicio 03</div>
+        <span class="srv-number">03</span>
+        <h2 class="srv-h2">Gifting &amp; Branding <em>Corporativo</em></h2>
+        <p class="srv-body">Transformamos nuestros productos premium en regalos empresariales únicos que refuerzan la identidad de tu marca. Ideal para fin de año, lanzamientos, campañas de fidelización y eventos ejecutivos.</p>
+        <ul class="srv-bullets">
+          <li>Kits de degustación personalizados con branding corporativo</li>
+          <li>Canastas gourmet con café, cacao y Pisco con Crema de Café</li>
+          <li>Empaque premium con diseño exclusivo por pedido mínimo</li>
+          <li>Opciones desde 20 hasta miles de unidades con descuentos por volumen</li>
+          <li>Entrega en Lima o envío a todo el Perú y USA</li>
+        </ul>
+        <a href="index.html#contact" class="btn-gold">Diseñar mi kit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ S4: EXPORTACIÓN ══════════════════════════ -->
+<section class="srv-section" id="exportacion">
+  <div class="s-inner">
+    <div class="srv-layout reverse">
+      <div class="srv-text-col rev-l">
+        <div class="srv-eyebrow">Servicio 04</div>
+        <span class="srv-number">04</span>
+        <h2 class="srv-h2">Exportación <em>Internacional</em></h2>
+        <p class="srv-body">Conectamos el café y cacao peruano con importadores y distribuidores en tres continentes. Gestionamos toda la cadena logística: desde la certificación sanitaria hasta la entrega en destino final.</p>
+        <ul class="srv-bullets">
+          <li>Mercados activos: USA, Canadá, España, Italia, Japón y Chile</li>
+          <li>Apoyo en certificaciones de exportación (SENASA, FDA, CE)</li>
+          <li>Documentación fitosanitaria y de origen garantizada</li>
+          <li>Exclusividades territoriales disponibles para distribuidores</li>
+          <li>Modalidades FOB, CIF y DDP según el mercado</li>
+        </ul>
+        <a href="index.html#contact" class="btn-gold">Explorar mercados</a>
+      </div>
+      <div class="srv-img-wrap rev-r">
+        <img src="https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_900,c_fill,g_auto/Andes_Peruano_Junin_3_rfxoqg" alt="Exportación Internacional Gamatel" class="srv-img" loading="lazy">
+        <div class="srv-img-tag">
+          <span class="tag-label">Origen certificado</span>
+          <span class="tag-val">Villa Rica, Pasco · Perú</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ S5: CATAS ════════════════════════════════ -->
+<section class="srv-section" id="catas">
+  <div class="s-inner">
+    <div class="srv-layout">
+      <div class="srv-img-wrap rev-l">
+        <img src="https://res.cloudinary.com/dgsugletk/image/upload/f_auto,q_auto,w_900,c_fill,g_auto/Gamatel_Quality_Process_Coffee_Beans_mgbssc" alt="Catas y Experiencias Gamatel" class="srv-img" loading="lazy">
+        <div class="srv-img-tag">
+          <span class="tag-label">Experiencia sensorial</span>
+          <span class="tag-val">Café · Cacao · Pisco Crema</span>
+        </div>
+      </div>
+      <div class="srv-text-col rev-r">
+        <div class="srv-eyebrow">Servicio 05</div>
+        <span class="srv-number">05</span>
+        <h2 class="srv-h2">Catas y <em>Experiencias de Marca</em></h2>
+        <p class="srv-body">Llevamos el ritual del buen café a tus instalaciones. Nuestras catas dirigidas por expertos generan experiencias memorables para colaboradores, clientes y embajadores de marca, elevando la percepción de tu empresa.</p>
+        <ul class="srv-bullets">
+          <li>Catas sensoriales de café specialty y cacao fino de aroma</li>
+          <li>Talleres de barismo básico e intermedio para equipos corporativos</li>
+          <li>Maridaje de café, cacao y Pisco con Crema de Café</li>
+          <li>Eventos en embajadas, clubs ejecutivos y hoteles de lujo</li>
+          <li>Formato presencial en Lima o bajo coordinación en cualquier ciudad</li>
+        </ul>
+        <a href="index.html#contact" class="btn-gold">Organizar una cata</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HOW WE WORK ══════════════════════════════ -->
+<section id="process">
+  <div class="s-inner">
+    <div class="proc-header">
+      <div class="s-label rev">Nuestro Proceso</div>
+      <h2 class="proc-h2 rev delay-1">Así trabajamos <em>contigo</em></h2>
+    </div>
+    <div class="proc-steps">
+      <div class="proc-step rev delay-1">
+        <div class="proc-step-num">01</div>
+        <div class="proc-step-title">Consulta Inicial</div>
+        <div class="proc-step-desc">Conversamos sobre tus necesidades, volumen, presupuesto y plazos. Sin compromiso, con enfoque en entender tu operación.</div>
+      </div>
+      <div class="proc-step rev delay-2">
+        <div class="proc-step-num">02</div>
+        <div class="proc-step-title">Propuesta a Medida</div>
+        <div class="proc-step-desc">Preparamos una propuesta comercial específica con productos, precios, condiciones y tiempos de entrega adaptados a ti.</div>
+      </div>
+      <div class="proc-step rev delay-3">
+        <div class="proc-step-num">03</div>
+        <div class="proc-step-title">Degustación</div>
+        <div class="proc-step-desc">Antes de firmar, te enviamos o coordinamos una sesión de degustación para validar los productos con tu equipo.</div>
+      </div>
+      <div class="proc-step rev delay-4">
+        <div class="proc-step-num">04</div>
+        <div class="proc-step-title">Contrato y Entrega</div>
+        <div class="proc-step-desc">Formalizamos el acuerdo y gestionamos la entrega, con seguimiento post-venta y soporte permanente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PARTNERS CTA ═════════════════════════════ -->
+<section id="partners-cta">
+  <div class="s-inner">
+    <div class="pc-inner">
+      <div>
+        <div class="s-label rev">¿Listo para trabajar juntos?</div>
+        <h2 class="pc-title rev delay-1">Conecta con el <em>equipo Gamatel</em></h2>
+        <p class="pc-desc rev delay-2">Ya sea para un contrato de abastecimiento, una cata corporativa o una alianza de distribución internacional — estamos disponibles para escucharte y diseñar la solución ideal.</p>
+      </div>
+      <div class="pc-actions rev delay-3">
+        <a href="index.html#contact" class="btn-gold">Escribir al equipo</a>
+        <a href="https://wa.me/51955521968" target="_blank" rel="noopener" class="btn-ghost">WhatsApp directo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FAQ ═══════════════════════════════════════ -->
+<section id="faq">
+  <div class="s-inner">
+    <div class="faq-header">
+      <div class="s-label rev">Preguntas frecuentes</div>
+      <h2 class="faq-h2 rev delay-1">Lo que más nos <em>preguntan</em></h2>
+    </div>
+    <div class="faq-grid rev delay-2">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Cuál es el pedido mínimo para abastecimiento institucional? <span class="faq-icon">+</span></div>
+        <div class="faq-a">El mínimo varía según el tipo de producto. Para café molido y en grano, iniciamos contratos desde 5 kg mensuales. Para gifting corporativo, el mínimo es de 20 kits por pedido. Contáctanos para una cotización sin compromiso.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Realizan entregas fuera de Lima? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Sí. Trabajamos con operadores logísticos en todo el Perú y también gestionamos envíos internacionales, principalmente a USA. Las condiciones y costos dependen del volumen y destino.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Puedo personalizar el empaque con la marca de mi empresa? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Absolutamente. Ofrecemos personalización de empaque para pedidos a partir de cierto volumen mínimo. Puedes incorporar tu logo, colores corporativos y mensaje personalizado.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Gamatel tiene certificaciones para exportar? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Contamos con Registro Sanitario vigente y disponemos de documentación SENASA para exportaciones. Para mercados específicos (FDA, CE), coordinamos la obtención de certificaciones complementarias con el importador.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Cómo funcionan las catas corporativas? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Coordinamos una sesión de 60 a 90 minutos en tus instalaciones, con un experto de Gamatel. Cubrimos la historia del café peruano, la variedad Arábica de Villa Rica y una degustación guiada. Se incluye material informativo para los participantes.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Trabajan con distribuidores exclusivos por región? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Sí. Ofrecemos exclusividades territoriales para distribuidores con presencia local o regional demostrada, tanto en el mercado peruano como internacional. Los términos se negocian caso a caso según el mercado objetivo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ════════════════════════════════════ -->
+<footer>
+  <div class="s-inner">
+    <div class="f-grid">
+      <div>
+        <img src="https://res.cloudinary.com/dgsugletk/image/upload/w_200,c_fit,f_auto/base_image_gamatel_logo_x1h0fr.png" alt="Gamatel Peru S.A.C." class="footer-logo-img" loading="lazy" decoding="async">
+        <div class="f-brand-name">Gamatel Peru</div>
+        <div class="f-brand-sub">Lima, Perú · ® Marca Registrada</div>
+        <p class="f-brand-desc">Comercializadora peruana de café, cacao y bebidas premium. Conectando la riqueza andina con el mundo.</p>
+        <div class="f-social">
+          <a href="https://www.instagram.com/gamateltucafe/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/gamatelperu" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/gamatelperu" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://wa.me/51955521968" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="index.html#about">Nosotros</a></li>
+          <li><a href="index.html#products">Productos</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="index.html#partners">Alianzas</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#institucional">Abastecimiento</a></li>
+          <li><a href="#ferias">Ferias &amp; Eventos</a></li>
+          <li><a href="#gifting">Gifting Corp.</a></li>
+          <li><a href="#exportacion">Exportación</a></li>
+          <li><a href="#catas">Catas</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Accesos</h4>
+        <ul>
+          <li><a href="https://www.gamateltucafe.com" target="_blank">Marketplace ↗</a></li>
+          <li><a href="investors.html">Inversores</a></li>
+          <li><a href="index.html#contact">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Gamatel Peru · Todos los derechos reservados.</p>
+      <span class="mr-badge">® Marca Registrada · Lima, Perú</span>
+      <p>Marketplace: <a href="https://www.gamateltucafe.com" target="_blank">gamateltucafe.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+
+<script>
+  // Cursor
+  const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,.ov-card,.srv-img-wrap,.faq-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+  });
+
+  // Nav
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('stuck',scrollY>60);
+    document.getElementById('topBtn').classList.toggle('visible',scrollY>400);
+  });
+
+  // Mobile menu
+  document.getElementById('ham').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));
+  function closeMob(){document.getElementById('mob').classList.remove('open')}
+
+  // Scroll reveal
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('in');
+  }),{threshold:.1});
+  document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el=>obs.observe(el));
+
+  // FAQ
+  function toggleFaq(item){
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  }
+</script>
+</body>
+</html>
